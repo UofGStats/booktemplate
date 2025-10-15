@@ -1,0 +1,10 @@
+/.quarto/
+**/*.quarto_ipynb
+
+/_freeze/
+/_site/
+.Rhistory
+/NEWVERSION_files/
+/_preview/
+/site_libs/
+._*
