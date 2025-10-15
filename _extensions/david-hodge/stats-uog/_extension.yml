@@ -1,0 +1,11 @@
+title: stats-uog
+author: david-hodge
+version: 1.0.0
+quarto-required: ">=1.6.0"
+contributes:
+  filters:
+    - stats-uog.lua
+    #- global-toggle/global-toggle.lua
+    #- code-blocks/code-blocks.lua
+    #- acc-styles/acc-styles.lua
+

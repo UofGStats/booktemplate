@@ -1,0 +1,185 @@
+<!-- This is one way to do it, use an include to load qmd files from elsewhere.
+Just beware that if you edit hiddenCh1.qmd any live preview won't auto update,
+so it's a pain when developing. You'll need to resave THIS file to force updates
+
+{{< include Ch1/Ch1-content.qmd >}} -->
+
+# Chapter 1 - Headings {#sec-headings}
+
+Each row that begins with a # is a chapter heading. So if each chapter is a single file it's best to only use a single # line at the top of each document. 
+
+## Models for binary/binomial response {#sec-binary-response}
+
+This chapter contains sections and subsections. This is the intro. Since the chapter title begins with a `#`, sections begin with `##`, and subsections should begin with `###`.
+
+Typical default numbering will look like this:
+```
+Chapter 1
+Section 1.1
+Subsection 1.1.1
+Subsection 1.1.2
+Section 1.2
+Subsection 1.2.1
+Subsection 1.2.2
+Subsection 1.2.3
+Section 1.3
+```
+The `crossref` option in your global `.yml` file does offer the chance to not number any chapters and just have sections in each chapter, if you really don't want chapters. 
+
+### First subsection
+
+Text goes here.
+
+### Second subsection
+
+Text goes here. And we can reference whole sections if we wish, like @sec-binary-response. Indeed if you look in @sec-links.
+
+Let
+
+$$D_3(y) \equiv \diff[3]{y}{x}$$
+
+That was just an equation inside `$$` and `$$` tags. For labelled equations you need to do the slightly unusual LaTeX behaviour of using `$$` and then `\\begin{aligned}` or similar inside. So unlike in LaTeX you always need `$$` to start a math environment (because the `$$` tells the browser to enable math mode). Yes! No. Maybe. Not.
+
+$$
+\begin{aligned}
+\int_0^{\infty} x^3 \dx
+\end{aligned}
+$$ {#eq-AROC}
+
+This week we will learn how to model outcomes of interest that take one of two categorical values (e.g. yes/no, success/failure, alive/dead). The independent responses $Y_i$ can either be
+
+* *binary* (ungrouped), taking the value 1 (say success, with probability $p_i$) or 0 (failure, with probability $1-p_i$) or
+
+* *binomial* (grouped), where $Y_i$ is the number of successes in a given number of trials $n_i$, with the probability of success being $p_i$ and the probability of failure being $1-p_i$.
+
+In both cases the distribution of the $Y_i$ is binomial, but in the first case it is Bin$(1,p_i)$ and in the second case it is Bin$(n_i,p_i)$.
+
+## Binomial response
+
+We will begin with models for binomial responses and we will look at exploratory plots of the data, different choices of link function and hypothesis tests about terms in the model. Finally we will examine measures of goodness of fit of the model. Let's begin with an example.
+
+```{r,echo=FALSE, include=FALSE, fig.height=4, fig.align='center'}
+knitr::opts_chunk$set(comment=NA, warning = FALSE, message = FALSE)
+library(ggplot2)
+library(knitr)
+library(dplyr)
+library(ROCR)
+library(sjPlot)
+set_theme(base = theme_grey(), theme.font = NULL, title.color = "black",
+title.size = 1.2, title.align = "left", title.vjust = NULL,
+geom.outline.color = NULL, geom.outline.size = 0,
+geom.boxoutline.size = 0.5, geom.boxoutline.color = "black",
+geom.alpha = 1, geom.linetype = 1, geom.errorbar.size = 0.7,
+geom.errorbar.linetype = 1, geom.label.color = NULL,
+geom.label.size = 4, geom.label.alpha = 1, geom.label.angle = 0,
+axis.title.color = "grey30", axis.title.size = 1.1,
+axis.title.x.vjust = NULL, axis.title.y.vjust = NULL, axis.angle.x = 0,
+axis.angle.y = 0, axis.angle = NULL, axis.textcolor.x = "grey30",
+axis.textcolor.y = "grey30", axis.textcolor = NULL,
+axis.linecolor.x = NULL, axis.linecolor.y = NULL, axis.linecolor = NULL,
+axis.line.size = 0.5, axis.textsize.x = 1, axis.textsize.y = 1,
+axis.textsize = NULL, axis.tickslen = NULL, axis.tickscol = NULL,
+axis.ticksmar = NULL, axis.ticksize.x = NULL, axis.ticksize.y = NULL,
+panel.backcol = NULL, panel.bordercol =NULL, panel.col = NULL,
+panel.major.gridcol = NULL, panel.minor.gridcol = NULL,
+panel.gridcol = NULL, panel.gridcol.x = NULL, panel.gridcol.y = NULL,
+panel.major.linetype = 1, panel.minor.linetype = 1, plot.backcol = NULL,
+plot.bordercol = NULL, plot.col = NULL, plot.margins = NULL,
+legend.pos = "right", legend.just = NULL, legend.inside = FALSE,
+legend.size = 1, legend.color = "black", legend.title.size = 1,
+legend.title.color = "black", legend.title.face = "bold",
+legend.backgroundcol = "white", legend.bordercol = "white",
+legend.item.size = NULL, legend.item.backcol = "grey90",
+legend.item.bordercol = "white")
+library(gridExtra)
+```
+
+<!-- Setup python via conda and a predefined quarto environment -->
+```{r setup, echo=F}
+#| code-fold: false
+library(reticulate)
+#reticulate::use_condaenv(condaenv = "quarto", conda = "auto", required = TRUE)
+```
+
+```{python, echo=F, eval=F}
+# Standard plot settings
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+# This is how to control plot sizes later, define plot size before creating plot
+# fig, ax = plt.subplots(figsize=(8, 5))
+```
+
+:::{.callout-tip .example}
+### Beetle mortality
+
+This is a "Tip Callout" box called via
+```
+:::{.callout-tip}
+### Banner title like Bettle Mortality
+
+Content here. This gives coloured boxes in HTML and LaTeX.
+:::
+```
+Now for a default code `panelset` as Quarto calls it. For allowing dual code presentation. See @sec-code-demo for my restyled version.
+
+::::::{.panel-tabset}
+
+### R
+
+```{r, results = 'hide'}
+#| code-fold: show
+beetles <- read.csv(url("http://www.stats.gla.ac.uk/~tereza/rp/beetles.csv"))
+beetles
+```
+
+### Python
+
+```{python, results = 'hide', eval=F}
+import pandas as pd
+# beetles = pd.read_csv("beetles.csv")
+# beetles
+```
+
+::::::
+
+:::
+
+::: {.callout-warning .definition #tip-special}
+## Example
+Some text
+:::
+
+This box above can be linked to in the HTML via @tip-special.
+
+::: {.callout-warning .definition}
+## Example
+Some text
+:::
+
+::: {.callout-warning .definition}
+## Example
+Some text
+:::
+
+::: {.callout-warning .definition #tip-special2}
+## Example
+Some text
+:::
+
+Only the first and last of these had a label. They were @tip-special and @tip-special2. Notice, however, that you will need to define your own custom blocks. Since a `warning` callout, which is used for an "Example" will suddenly be called "Warning 1.1" since the default naming of a labelled (and thus numbered) block would need to be overridden.
+
+Also notice the massive confusion caused by me using the `#tip-name` style label on a `warning` callout! Make sure to use the right prefix in the reference else it'll do this.
+
+::: {.callout-caution #cau-correct}
+## this is a caution callout
+
+The reference name begins with `#cau-`.
+:::
+
+Then when I reference it like this: @cau-correct, all is well.
+
+

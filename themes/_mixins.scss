@@ -1,0 +1,13 @@
+@mixin numbered-box-dark-mode($border-color, $title-bg-color, $title-color) {
+  details.fbx-default {
+    > summary,
+    > div {
+      border-color: $border-color; // Set border color
+    }
+
+    > summary {
+      background-color: $title-bg-color; // Set title background color
+      color: $title-color;
+    }
+  }
+}

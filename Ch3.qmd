@@ -1,0 +1,37 @@
+# Links chapter {#sec-links}
+
+This chapter can even link back to other whole chapters @sec-binary-response. Or equations in other chapters @eq-AROC.
+
+## Section One
+
+One way to include videos is to use the Quarto syntax used to insert any figures, where you write
+
+```
+::: {#fig-vid3}
+{{﹤video https://youtu.be/d2nG7Y17sQw 
+  title = "Binomial response models applied to beetle mortality data (9m59s)",
+  <other customizations can be put here>
+>}}
+
+This is the caption.
+:::
+```
+
+For more details: [Quarto video manual](https://quarto.org/docs/authoring/videos.html)
+
+Here it is:
+
+::: {#fig-vid3}
+{{< video https://youtu.be/d2nG7Y17sQw 
+  title = "Binomial response models applied to beetle mortality data (9m59s)"
+>}}
+
+This is the caption.
+:::
+
+Referencing is simple, like this @fig-vid3. Such video blocks must contain actual text (the caption is drawn from the final line).
+
+
+## Section Two
+
+Text here.

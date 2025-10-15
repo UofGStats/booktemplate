@@ -1,0 +1,45 @@
+/*-- scss:defaults --*/
+
+@import "mixins";
+
+/*-- scss:rules --*/
+
+// Callout styling - New coloured callouts
+
+$video-border-color: #beb9eb;
+$video-title-bg-color: #877eda;
+
+$video-border-color: #b33a3a; 
+$video-title-bg-color: #660000; 
+
+$lemma-border-color: #66b58a;
+$lemma-title-bg-color: #004721;
+
+$definition-border-color: #ffb948;
+$definition-title-bg-color: #8b2f00;
+
+$theorem-border-color: #948bde;
+$theorem-title-bg-color: #584eab;
+
+$corollary-border-color: #7fbad7;
+$corollary-title-bg-color: #005398;
+
+.Video {
+  @include numbered-box-dark-mode($video-border-color, $video-title-bg-color, $body-color);
+}
+
+.Lemma {
+  @include numbered-box-dark-mode($lemma-border-color, $lemma-title-bg-color, $body-color);
+}
+
+.Definition {
+  @include numbered-box-dark-mode($definition-border-color, $definition-title-bg-color, $body-color);
+}
+
+.Theorem {
+  @include numbered-box-dark-mode($theorem-border-color, $theorem-title-bg-color, $body-color);
+}
+
+.Corollary {
+  @include numbered-box-dark-mode($corollary-border-color, $corollary-title-bg-color, $body-color);
+}

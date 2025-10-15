@@ -1,0 +1,74 @@
+project:
+  type: book
+  resources: ["resources"] # List files/folders here which need copying to live version, but which aren't explicitly references (e.g. numbas folders)
+  output-dir: _preview
+
+knitr: true
+
+book:
+  # No title -- included via _sidebar_header.html
+  #author: "Dr David Hodge"
+  #date: 2025/12/25
+  #date-format: "MMM YYYY"
+  downloads: pdf
+  page-navigation: true
+  page-footer:
+    right: "Developed by David Hodge for the University of Glasgow"
+  chapters:
+      - text: Sidebar Welcome
+        file: index.qmd
+      - text: Chapter 1
+        file: Ch1.qmd
+      - text: Chapter 2
+        href: Ch2.qmd
+      - text: Chapter 3
+        href: Ch3.qmd
+      - text: Chapter 4
+        href: Ch4.qmd
+      - text: Chapter 5
+        href: Ch5.qmd
+  sidebar:
+    style: "docked"
+    search: true
+    header: "_sidebar-header.html"
+comments:
+  hypothesis: true
+      
+
+bibliography: references.bib
+reference-location: margin
+
+# My filters
+filters:
+  - latex-environment # This saves having to type data-latex="" all the time
+  - fontawesome # This loads a large bank of nice icons
+environments: [goals, goals-header, term] # See latex-environment above
+commands: [term]
+use-rsvg-convert: true
+number-depth: 3
+format:
+  html:
+    defaults: [resources/latex/global-maths-definitions.yaml] # Calls relative to root folder
+    default-image-extension: svg
+    highlight-style: a11y
+    mainfont: "Atkinson Hyperlegible"
+    code-overflow: wrap
+    toc: true
+    toc-location: right
+    respect-user-color-scheme: true
+    theme:
+      light: [themes/load-light.scss, cosmo]
+      dark: [superhero, themes/load-dark.scss]
+    #include-after-body: disable-tippy-tab.js
+  pdf:
+    documentclass: scrreport
+    default-image-extension: png
+    keep-tex: true
+    papersize: a4
+    include-in-header: ["include-in-header.tex"]
+    code-block-overflow: wrap
+    geometry:
+      - left=10mm
+      - marginparwidth=60mm
+      - textwidth=130mm
+      - marginparsep=5mm

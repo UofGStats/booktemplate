@@ -1,0 +1,82 @@
+/*-- scss:defaults --*/
+
+@import 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap';
+
+$font-family: "Atkinson Hyperlegible", sans-serif;
+$font-family-serif: "Atkinson Hyperlegible", sans-serif;
+
+/*-- scss:rules --*/
+
+@counter-style lower-alpha { /* Change the numbering style to (a), (b) etc.. from a. b. etc... */
+  system: alphabetical;
+  symbols: '\61' '\62' '\63' '\64' '\65' '\66' '\67' '\68' '\69' '\6A' '\6B' '\6C' '\6D' '\6E' '\6F' '\70' '\71' '\72' '\73' '\74' '\75' '\76' '\77' '\78' '\79' '\7A';
+  suffix: ') ';
+  prefix: '(';
+}
+
+@counter-style lower-roman { /* Change the numbering style to (a), (b) etc.. from a. b. etc... */
+  system: additive;
+  range: 1 20;
+  additive-symbols: 10 x, 9 ix, 5 v, 4 iv, 1 i;
+  suffix: ') ';
+  prefix: '(';
+}
+
+.nav-page-text { /* Control the text for Previous and Next Chapter navigation, which by default is too light */
+  color: var(--bs-body-color);
+}
+
+.center {
+    text-align: center;
+}
+
+.emph {
+    font-style: italic;
+}
+
+.table.compact { // Compact table, overriding bootstrap row top and bottom padding.
+  td, th {
+    /* Boostrap defaults were: /*
+    /* 17px bottom, 10px top, 17px left, 17px right. */
+    padding: 5px 17px; // Top/Bottom Left/Right
+  }
+}
+
+.table.fit { // Stopping table getting too wide inside a coloured box
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table.lowerhead th { // Stop bootstrap from UPPERCASing a table header, e.g. $x$ --> $X$
+  text-transform: none;
+}
+
+// Center the logo and title in the sidebar
+.book-title-section, .sidebar-tools-collapse, .sidebar-header {
+  text-align: center; // override bootstrap
+  margin-bottom: 0;
+}
+
+.book-title-section img.sidebar-logo {
+  width: 60%;
+  padding: 0.5rem 0.75rem;     // box for later white background in dark mode
+  box-sizing: content-box;     // ensures padding doesn’t shrink image
+  margin-bottom: 1rem;
+}
+
+/* Title style */
+.book-title-section .sidebar-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  border-bottom: 1px solid #777;
+  padding-bottom: 0.25rem;
+  
+}
+
+/* Subtitle text */
+
+.book-title-section .sidebar-subtitle {
+  font-size: 1em;
+  margin-top: 0.25rem;
+}

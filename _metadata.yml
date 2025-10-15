@@ -1,0 +1,62 @@
+# This is built-in Quarto feature to define new environment
+# this allows :::{#vid-videoname} syntax and @vid-videoname referencing
+crossref:
+  custom:
+    - kind: float
+      reference-prefix: Video
+      key: vid
+      latex-env: video
+  chapters: true
+
+filters:
+  - custom-numbered-blocks # This is ute-hahn's nice coloured boxes
+
+# This is ute-hahn's nice coloured boxes: setup
+custom-numbered-blocks:
+  groups:
+    examplelike:
+      colors: [ 'b2dac4', '004721']
+      boxstyle: foldbox.simple
+    tasklike:
+      colors: [948bde, 584eab]
+      boxstyle: foldbox.simple
+    anslike:
+      colors: [ d18888, 660000]
+      boxstyle: foldbox.simple
+    deflike:
+      colors: [ ffdc36, ffb948]
+      boxstyle: foldbox.simple
+    videolike:
+      colors: [ d18888, 660000] 
+      boxstyle: foldbox.simple
+      collapse: open
+    thmlike:
+      colors: [948bde, 584eab]
+      boxstyle: foldbox.simple
+  classes:
+    Example:
+      group: examplelike
+      collapse: false
+    Task:
+      group: tasklike
+      collapse: true
+    Answer:
+      group: anslike
+      collapse: true
+    Weblink:
+      group: videolike
+      collapse: false
+      label: "External link"
+    Definition:
+      group: deflike
+      collapse: false
+    Theorem:
+      group: thmlike
+    Lemma:
+      colors: [ 'b2dac4', '004721']
+      group: thmlike
+    Corollary:
+      colors: [ '7fbad7', '005398']
+      group: thmlike
+    Video:
+      group: videolike

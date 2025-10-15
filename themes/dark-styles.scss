@@ -1,0 +1,119 @@
+/*-- scss:defaults --*/
+
+$primary: #f8f8f8;
+$body-bg: $university-blue;
+$body-color: #f8f8f8;
+
+$navbar-bg: $university-blue; // Top banner background
+$sidebar-bg: mix(black,$university-blue,20%);
+$footer-bg: $sidebar-bg;
+
+$uog-sidebar-text-color: $turquoise;
+
+$toc-color: $turquoise;
+
+$link-color: $sunshine;
+
+/*-- scss:rules --*/
+
+// Styling the logo
+.book-title-section img {
+  background-color: #fff;      /* white background */
+  border-radius: 10px;         /* rounded corners */
+}
+
+/* Title style */
+.book-title-section .sidebar-title {
+ color: $uog-sidebar-text-color;
+}
+
+/* Subtitle text */
+.book-title-section .sidebar-subtitle {
+  color: $uog-sidebar-text-color;
+}
+
+/* Change background on search form */
+#quarto-search,
+#quarto-search .aa-Input,
+form {
+  background-color: $university-blue;
+  color: $uog-sidebar-text-color;
+}
+
+/* Not needed -- changes magnifying glass colour
+.aa-SubmitIcon,
+  .aa-SubmitIcon path {
+    color: $uog-sidebar-text-color !important;
+    fill: $uog-sidebar-text-color !important;
+  } */
+
+
+.sidebar nav[role="doc-toc"] ul > li > a.active, .sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  border-left: 1px solid #2c2c2c;
+  color: #ddd !important;
+}
+
+
+// Sidebar links
+.sidebar-item-text.sidebar-link {
+  color: $uog-sidebar-text-color;
+  text-decoration: none;
+
+  &:hover {
+    background-color: mix($primary, $sidebar-bg, 10%);
+    font-weight: bold
+  }
+
+  &.active {
+    background-color: $body-bg;
+    font-weight: normal;
+    color: $uog-sidebar-text-color;
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+a {
+  color: #00e0e0;
+}
+
+kbd, .kbd{
+  background-color: #222222 !important;
+}
+
+.blockquote {
+  color: #dd2 !important;
+}
+
+span.term {
+  color: rgb(219, 112, 112);
+  font-weight: 500;
+}
+
+figcaption, .table caption {
+  color: #dd2;
+}
+
+.stripes.table {
+  tr:nth-child(even), thead {
+    background: #222;
+  }
+}
+
+.nav-footer-right { // The credit bottom right footer
+  color: var(--bs-body-color);
+}
+
+// 'Code' heading is too grey, needs lighter colour
+details.code-fold > summary {
+  color: $sunshine;
+}
+
+// toc 1.1 Word words, the numbers too light
+.header-section-number {
+  color: $toc-color !important;
+}
+
+code:not(pre > code) {
+  background-color: mix(black,$university-blue,40%) !important;
+}
+

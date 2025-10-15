@@ -1,0 +1,19 @@
+I haven't worked out how to have comments in the included style file mymacros.sty
+So the version with commentary is here:
+
+% This is used for pdf compilation from qmd.
+% This file should be updated in parallel with mymacros.sty which is used for html compilation.
+% This is how the two files are included in the _quarto.yaml header of the qmd file
+%format:
+%  html:
+%    defaults: [mymacros.style]
+%  pdf:
+%   include-in-header: ["include-in-header.tex"]
+
+\newcommand*{\diff}[3][]{\frac{\!\textrm{d}^{#1} #2}{\textrm{d}#3^{#1}}}
+
+% Declaring math operators. Could also use \newcommand{\name}{\operatorname{name}}
+\DeclareMathOperator{\cosec}{cosec}
+\DeclareMathOperator{\powop}{pow} %\newcommand{\pow}{\operatorname{pow}}
+
+$\definecolor{frog}{rgb}{1,0,0}$

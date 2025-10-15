@@ -1,0 +1,147 @@
+---
+filters:
+    - stats-uog
+---
+
+# Week 2 -- Code demonstrations {#sec-code-demo}
+
+<!-- # Models for binary/binomial response  -->
+
+Some equations, again. Notice this chapter begins with:
+```
+---
+filters:
+    - stats-uog
+---
+```
+This loads the bonus accessibility features extension I have made.
+
+**LET'S MAKE THIS CHAPTER ALL ABOUT SHOWING OFF THE ACCESSIBILITY STUFF**
+
+
+$$\diff[3]{y}{x}$$
+
+$$\int_0^{\infty} x^2 \dx$$
+
+This equation is the same as @eq-AROC from Chapter 1.
+
+## Features
+
+- You'll first note in the bottom left is a global toggle button set. You can change all code blocks to R or to Python, by clicking; or by pressing `R` or `P` on the keyboard.
+
+## Binomial response
+
+We will begin with models for binomial responses and we will look at exploratory plots of the data, different choices of link function and hypothesis tests about terms in the model. Finally we will examine measures of goodness of fit of the model. Let's begin with an example.
+
+```{r r-setup,echo=FALSE, include=FALSE, fig.height=4, fig.align='center'}
+knitr::opts_chunk$set(comment=NA, warning = FALSE, message = FALSE)
+library(ggplot2)
+library(knitr)
+library(dplyr)
+library(ROCR)
+library(sjPlot)
+set_theme(base = theme_grey(), theme.font = NULL, title.color = "black",
+title.size = 1.2, title.align = "left", title.vjust = NULL,
+geom.outline.color = NULL, geom.outline.size = 0,
+geom.boxoutline.size = 0.5, geom.boxoutline.color = "black",
+geom.alpha = 1, geom.linetype = 1, geom.errorbar.size = 0.7,
+geom.errorbar.linetype = 1, geom.label.color = NULL,
+geom.label.size = 4, geom.label.alpha = 1, geom.label.angle = 0,
+axis.title.color = "grey30", axis.title.size = 1.1,
+axis.title.x.vjust = NULL, axis.title.y.vjust = NULL, axis.angle.x = 0,
+axis.angle.y = 0, axis.angle = NULL, axis.textcolor.x = "grey30",
+axis.textcolor.y = "grey30", axis.textcolor = NULL,
+axis.linecolor.x = NULL, axis.linecolor.y = NULL, axis.linecolor = NULL,
+axis.line.size = 0.5, axis.textsize.x = 1, axis.textsize.y = 1,
+axis.textsize = NULL, axis.tickslen = NULL, axis.tickscol = NULL,
+axis.ticksmar = NULL, axis.ticksize.x = NULL, axis.ticksize.y = NULL,
+panel.backcol = NULL, panel.bordercol =NULL, panel.col = NULL,
+panel.major.gridcol = NULL, panel.minor.gridcol = NULL,
+panel.gridcol = NULL, panel.gridcol.x = NULL, panel.gridcol.y = NULL,
+panel.major.linetype = 1, panel.minor.linetype = 1, plot.backcol = NULL,
+plot.bordercol = NULL, plot.col = NULL, plot.margins = NULL,
+legend.pos = "right", legend.just = NULL, legend.inside = FALSE,
+legend.size = 1, legend.color = "black", legend.title.size = 1,
+legend.title.color = "black", legend.title.face = "bold",
+legend.backgroundcol = "white", legend.bordercol = "white",
+legend.item.size = NULL, legend.item.backcol = "grey90",
+legend.item.bordercol = "white")
+library(gridExtra)
+```
+
+<!-- Setup python via conda and a predefined quarto environment -->
+```{r retic-setup, echo=F}
+#| code-fold: false
+library(reticulate)
+#reticulate::use_condaenv(condaenv = "quarto", conda = "auto", required = TRUE)
+```
+
+```{python py-imports, echo=F, eval=F}
+# Standard plot settings
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+# This is how to control plot sizes later, define plot size before creating plot
+# fig, ax = plt.subplots(figsize=(8, 5))
+```
+
+
+:::{.callout-tip}
+### Beetle mortality
+
+Jump to the [Beetle code](#beetle-code).
+
+Data for this example consists of the number of beetles dead (*killed*) after five hours exposure to gaseous carbon disulphide at various concentrations (*dose*). The goal for this analysis is to model the probability of a beetle dying as a function of the carbon disulphide dose. 
+
+<a id="beetle-code"></a>
+
+::::::{.panel-tabset}
+
+### R
+
+```{r, results = 'hide'}
+#| code-fold: show
+beetles <- read.csv(url("http://www.stats.gla.ac.uk/~tereza/rp/beetles.csv"))
+beetles
+```
+
+### Python
+
+```{python py-beetle-load, results = 'hide', eval=F}
+import pandas as pd
+# beetles = pd.read_csv("resources/data/beetles.csv")
+# beetles
+```
+
+::::::
+
+:::
+
+:::{.callout-tip}
+## Conventional tip callout
+
+Some content
+:::
+
+:::{.callout-warning}
+## Conventional warning callout
+
+Some content
+:::
+
+:::{.callout-caution}
+## Conventional caution callout
+
+Some content
+:::
+
+:::{.callout-note}
+## Conventional note callout
+
+Some content
+:::
+
+

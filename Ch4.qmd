@@ -1,0 +1,181 @@
+---
+filters:
+  - stats-uog
+---
+
+# Chapter 4 - Nicer boxes
+
+This chapter shows off some nice coloured boxes. They come from the `custom-numbered-blocks` extension. First you need to install the extension `quarto add ute/custom-numbered-blocks`.
+
+This code has then been added to the `_quarto.yml` or `_metadata.yml` file (or at the top of this file) to load the coloured boxes.
+
+```
+filters:
+  - custom-numbered-blocks # This loads the extension
+
+# This is ute-hahn's nice coloured boxes: setup
+custom-numbered-blocks:
+  groups:
+    thmlike:
+      colors: [948bde, 584eab]
+      boxstyle: foldbox.simple
+    deflike:
+      colors: [ffdc36, ffb948]
+      boxstyle: foldbox.simple
+    videolike:
+      colors: [beb9eb, 877eda]
+      boxstyle: foldbox.simple
+      collapse: open
+  classes:
+    Theorem:
+      group: thmlike
+    Lemma:
+      group: thmlike
+    Corollary:
+      group: thmlike
+    Definition:
+      group: deflike
+    Video:
+      group: videolike
+      
+crossref:
+  chapters: true
+```
+
+## Custom Numbered Blocks
+
+We’ve defined several custom-numbered block types using the `custom-numbered-blocks` option. The key point is that these can be numbered and follow grouped numbering conventions.
+
+Each block belongs to a **group** that determines its shared numbering. 
+
+All of these blocks are *foldable*, meaning they can be opened and closed. The `collapse` setting determines the starting state.
+
+| Box Name | Group     | Left Border Color | Title Background Color |  Default State |
+|-------------|------------|-------------------|------------------------|-----------------|
+| Theorem     | `thmlike`  | `#948bde`         | `#584eab`              |  Open / Closeable |
+| Lemma       | `thmlike`  | `#b2dac4`         | `#004721`              |  Open / Closeable |
+| Corollary   | `thmlike`  | `#7fbad7`         | `#005398`              |  Open / Closeable |
+| Definition  | `deflike`  | `#ffdc36`         | `#ffb948`              |  Open / Closeable |
+| Video       | `videolike`| `#d18888`         | `#660000`              |  Open / Closeable |
+
+> Note:
+> The two colors defined for each group represent the **left border** (first color) and the **title background** (second color).
+
+These boxes also have dark-mode versions, see below.
+
+
+:::{.Video #vidFirst}
+## Binomial response models applied to beetle mortality data (9m59)  
+
+There is some text here before the video
+
+{{< video https://youtu.be/d2nG7Y17sQw 
+  title = "Binomial response models applied to beetle mortality data (9m59s)"
+>}}
+:::
+
+:::{.example}
+### Beetle mortality
+
+Data for this example consists of the number of beetles dead (*killed*) after five hours exposure to gaseous carbon disulphide at various concentrations (*dose*). The goal for this analysis is to model the probability of a beetle dying as a function of the carbon disulphide dose. 
+
+::::::{.panel-tabset}
+
+### R
+
+```{r r-beetle-load, results = 'hide'}
+#| code-fold: show
+beetles <- read.csv(url("http://www.stats.gla.ac.uk/~tereza/rp/beetles.csv"))
+beetles
+```
+
+### Python
+
+```{python py-beetle-load, results = 'hide', eval=F}
+import pandas as pd
+# beetles = pd.read_csv("resources/data/beetles.csv")
+# beetles
+```
+
+::::::
+
+:::
+
+:::{.callout-tip}
+## Conventional tip callout
+
+Some content
+:::
+
+:::{.Lemma #bestlemma}
+## Super
+
+This is a fantastic Lemma.
+:::
+
+There are no Lemma's better than Lemma \ref{bestlemma}.
+
+The other way to embed a video is inside a fenced div which just contains a label starting with \# like this:
+
+Our first video was embedded inside a custom numbered block and it was called Video \ref{vidFirst}.
+
+## Demonstration of Custom Numbered Blocks
+
+Below are examples of the custom-numbered blocks.  
+Each block is foldable (open by default) and has its own color scheme and group style as defined in your YAML configuration.
+
+Notice Theorem, Corollary and Lemma has been defined to share counter. But Definition and Video have their own types (*deflike* and *vidlike*).
+
+::: {.Theorem #rthmpythag}
+## Pythagoras' Theorem
+
+In a right-angled triangle...
+:::
+
+::: {.Corollary #Rcor-pythag}
+## Corollary to Pythagoras' Theorem
+
+In a right-angled triangle, if the two shorted sides are equal, so that $a = b$, then the hypotenuse satisfies $c=a\sqrt{2}$.
+:::
+
+::: {.Lemma #Rlem-euclid}
+## Euclid
+
+If two lines are perpendicular to the same line, then they are parallel to each other.
+:::
+
+::: {.Definition #Rdef-orthog} 
+## Definition of Orthogonality
+
+Two vectors $\mathbf{u}$ and $\mathbf{v}$ are said to be *orthogonal* if their dot product is zero:
+$$
+\mathbf{u} \cdot \mathbf{v} = 0.
+$$
+:::
+
+::: {.Video #Rvid-yt}
+## Video Demonstration
+ 
+Here's a Youtube video:
+
+{{< video https://youtu.be/d2nG7Y17sQw 
+  title = "Binomial response models applied to beetle mortality data (9m59s)"
+>}}
+:::
+
+---
+
+## Referencing the Blocks
+
+You can reference the blocks defined above using their labels:
+
+- The main result is stated in Theorem \ref{rthmpythag}. 
+- Checkout Corollary \ref{Rcor-pythag}.  
+- The proof uses Lemma \ref{Rlem-euclid}.  
+- Then there's Definition \ref{Rdef-orthog}.  
+- Finally, see Video \ref{Rvid-yt}.
+
+## Customization
+
+Each box has to define four colours. In the file mentioned above the light-mode border and background are set. For those using dark-mode you also need to define a dark mode pair. See [dark box colour stylesheet](themes/dark-styles-boxes.scss).
+

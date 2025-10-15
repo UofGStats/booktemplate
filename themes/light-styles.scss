@@ -1,0 +1,84 @@
+/*-- scss:defaults --*/
+
+$primary: #333;
+$body-bg: #f8f8f8;
+
+$margin-text-colour: #666666;
+$sidebar-bg: #f8f8f8;
+
+$uog-sidebar-text-color: $primary;//$sky-blue;
+
+$toc-color: $university-blue;
+$link-color: $cobalt;
+
+/*-- scss:rules --*/
+
+/* Title style */
+.book-title-section .sidebar-title {
+ color: $uog-sidebar-text-color;
+}
+
+/* Subtitle text */
+.book-title-section .sidebar-subtitle {
+  color: $uog-sidebar-text-color;
+}
+
+// Sidebar links
+.sidebar-item-text.sidebar-link {
+  color: $uog-sidebar-text-color;
+  text-decoration: none;
+
+  &:hover {
+    background-color: mix($uog-sidebar-text-color, $sidebar-bg, 10%);
+    font-weight: bold;
+  }
+
+  &.active {
+    background-color: mix($uog-sidebar-text-color, $sidebar-bg, 5%);
+    font-weight: normal;
+    color: $uog-sidebar-text-color;
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+
+.blockquote {
+  color: #22a !important;
+}
+
+span.term {
+  color: darkred;
+  font-weight: 500;
+}
+
+figcaption, .table caption  {
+  color: #22a;
+}
+
+.stripes.table {
+    tr:nth-child(even), thead {
+      background: #eee;
+    }
+}
+
+.column-margin { // Colour of text in margin was poor contrast
+  color: $margin-text-colour;
+}
+
+.column-margin figcaption, .table caption  {
+  color: #22a;
+}
+
+.nav-footer-right { // The credit bottom right footer
+  color: #666666;
+}
+
+// 'Code' heading is too grey, needs darker colour
+details.code-fold > summary {
+  color: $university-blue;
+}
+
+/* toc numbers too low contrast, just make them match the text */
+.header-section-number {
+  color: $toc-color !important;
+}
