@@ -27,6 +27,8 @@ book:
         href: Ch4.qmd
       - text: Chapter 5
         href: Ch5.qmd
+      - text: Chapter 6
+        href: Ch6.qmd
   sidebar:
     style: "docked"
     search: true
@@ -38,11 +40,17 @@ comments:
 bibliography: references.bib
 reference-location: margin
 
+course_title: "Test Course"
+metadata-files: 
+  - _numbered-boxes.yml # Definitions for Ute Hahn's coloured boxes extension
+                        # the contents can be pasted here if desired instead
+
 # My filters
 filters:
   - latex-environment # This saves having to type data-latex="" all the time
   - fontawesome # This loads a large bank of nice icons
-environments: [goals, goals-header, term] # See latex-environment above
+  - custom-numbered-blocks
+environments: [term] # See latex-environment above
 commands: [term]
 use-rsvg-convert: true
 number-depth: 3

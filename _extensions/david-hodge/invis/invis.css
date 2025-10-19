@@ -1,0 +1,25 @@
+/* Set invisible text in html to transparent */
+.invisible-text {
+  color: transparent !important;
+  user-select: none !important;
+  opacity: 0 !important;
+}
+
+.invisible-text-debug {
+  color: red !important;           /* or whatever highlight color */
+  border: 1px dashed red;
+  background-color: #ffeeee;
+}
+
+
+/* Trick to hide from non-screenreaders */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}

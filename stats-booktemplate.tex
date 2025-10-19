@@ -1,0 +1,1265 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  a4paper,
+  DIV=11,
+  numbers=noendperiod,
+  oneside]{scrreport}
+\usepackage{xcolor}
+\usepackage[left=10mm,marginparwidth=60mm,textwidth=130mm,marginparsep=5mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{3}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+% This is used for pdf compilation from qmd.
+% Any special LaTeX commands should be updated in parallel with mymacros.sty which is used for html compilation.
+% All rows *might* need an HTML equivalent. Those at the bottom of this file are identical.
+% This is how the two files are included in the _quarto.yaml header of the qmd file
+%format:
+%  html:
+%    defaults: [resources/latex/global-maths-definitions.yaml]
+%  pdf:
+%   include-in-header: ["include-in-header.tex"]
+
+% the 'defaults' above secretly points to mymacros.sty where they really live.
+
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\usepackage[skins,breakable]{tcolorbox}
+
+% Code to reduce width of code blocks in PDF to encourage line wrapping
+\usepackage{fvextra}
+      \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+        breaklines,
+        breakanywhere,
+        commandchars=\\\{\},
+        fontsize=\small
+      }
+% Also line wrap in verbatim blocks
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,fontsize=\footnotesize}
+
+\usepackage{environ}
+
+% Below here is an old way to defining new custom coloured boxes.
+% We use nice extensions now.
+
+% \definecolor{goals-col}{RGB}{201, 232, 222}
+% 
+% % For defining new callout boxes
+% % HTML version is in CSS file
+% % Need to turn on goals and goals-header as environments using the latex-environment extension for quarto
+% % This is designed to work for the following fenced div syntax:
+% % :::{.goals}
+% % ::::{.goals-header}
+% % TITLE
+% % ::::
+% % Actual box contents
+% % :::
+% \newtcolorbox{goals}[1][]{notitle, top=0pt, boxsep=0pt, coltitle=black!90!white, colback=white, colframe=goals-col,#1}
+% \NewEnviron{goals-header}{\tcbsubtitle[top=1mm, bottom=1mm]{\BODY}}
+% % It works by creating a box with no title. Then no spacing. Then a subtitle defined later.
+
+% Increasing spacing between rows of tables
+\def\arraystretch{2}
+
+% Syntax for highlighting my KEY TERMS
+% HTML version is included in css for .term
+\newcommand{\term}[1]{\textbf{#1}}
+
+% Added to do derivatives, custom commands for HTML
+% read by MathJax are inserted via diff.macro
+% must keep naming in sync with esdiff package
+\usepackage{esdiff}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% BELOW HERE ARE COMMANDS SHARED WITH THE HTML OUTPUT %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% KEEP THESE UPDATED ALSO IN THE MYMACROS.STY FILE   %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Adding some operator names missing by default
+\DeclareMathOperator{\cosec}{cosec}
+\DeclareMathOperator{\powop}{pow} %\newcommand{\pow}{\operatorname{pow}}
+\definecolor{frog}{rgb}{1,0,0}
+\newcommand{\dx}{\,\text{d}x}
+\newcommand{\du}{\,\text{d}u}
+\newcommand{\dy}{\,\text{d}y}
+\newcommand{\dt}{\,\text{d}t}
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{plain}
+\@ifundefined{c@chapter}{\newfloat{video}{h}{lovid}}{\newfloat{video}{h}{lovid}[chapter]}
+\floatname{video}{Video}
+\newcommand*\listofvideos{\listof{video}{List of Videos}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{sidenotes}{}{\usepackage{sidenotes}}
+\@ifpackageloaded{marginnote}{}{\usepackage{marginnote}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+%%%% ---foldboxy preamble ----- %%%%%
+
+\definecolor{fbx-default-color1}{HTML}{c7c7d0}
+\definecolor{fbx-default-color2}{HTML}{a3a3aa}
+
+\definecolor{fbox-color1}{HTML}{c7c7d0}
+\definecolor{fbox-color2}{HTML}{a3a3aa}
+
+% arguments: #1 typelabelnummer: #2 titel: #3
+\newenvironment{fbx}[3]{\begin{tcolorbox}[enhanced, breakable,%
+attach boxed title to top*={xshift=1.4pt},
+boxed title style={boxrule=0.0mm, fuzzy shadow={1pt}{-1pt}{0mm}{0.1mm}{gray}, arc=.3em, rounded corners=east, sharp corners=west}, colframe=#1-color2, colbacktitle=#1-color1, colback = white, coltitle=black,  titlerule=0mm, toprule=0pt, bottomrule=.7pt, leftrule=.3em, rightrule=0pt, outer arc=.3em,  arc=0pt,	 sharp corners = east, left=.5em, bottomtitle=1mm, toptitle=1mm,title=\textbf{#2}\hspace{0.5em}{#3}]}
+{\end{tcolorbox}}
+
+% boxed environment with right border
+\newenvironment{fbxSimple}[3]{\begin{tcolorbox}[enhanced, breakable,%
+attach boxed title to top*={xshift=1.4pt},
+boxed title style={boxrule=0.0mm, fuzzy shadow={1pt}{-1pt}{0mm}{0.1mm}{gray}, arc=.3em, rounded corners=east, sharp corners=west}, colframe=#1-color2, colbacktitle=#1-color1, colback = white, coltitle=black,  titlerule=0mm, toprule=0pt, bottomrule=.7pt, leftrule=.3em, rightrule=.7pt, outer arc=.3em,  	left=.5em, right=.5em, bottomtitle=1mm, toptitle=1mm,title=\textbf{#2}\hspace{0.5em}{#3}]}
+{\end{tcolorbox}}
+
+%%%% --- end foldboxy preamble ----- %%%%%
+%%==== colors from yaml ===%
+\definecolor{Answer-color1}{HTML}{d18888}
+\definecolor{Answer-color2}{HTML}{660000}
+\definecolor{Lemma-color1}{HTML}{b2dac4}
+\definecolor{Lemma-color2}{HTML}{004721}
+\definecolor{Corollary-color1}{HTML}{7fbad7}
+\definecolor{Corollary-color2}{HTML}{005398}
+\definecolor{Video-color1}{HTML}{d18888}
+\definecolor{Video-color2}{HTML}{660000}
+\definecolor{Theorem-color1}{HTML}{948bde}
+\definecolor{Theorem-color2}{HTML}{584eab}
+\definecolor{Example-color1}{HTML}{b2dac4}
+\definecolor{Example-color2}{HTML}{004721}
+\definecolor{Definition-color1}{HTML}{ffdc36}
+\definecolor{Definition-color2}{HTML}{ffb948}
+\definecolor{Task-color1}{HTML}{948bde}
+\definecolor{Task-color2}{HTML}{584eab}
+\definecolor{Weblink-color1}{HTML}{d18888}
+\definecolor{Weblink-color2}{HTML}{660000}
+%=============%
+\newcounter{quartocallouttipno}
+\newcommand{\quartocallouttip}[1]{\refstepcounter{quartocallouttipno}\label{#1}}
+\newcounter{quartocalloutcauno}
+\newcommand{\quartocalloutcau}[1]{\refstepcounter{quartocalloutcauno}\label{#1}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\author{}
+\date{}
+\begin{document}
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+
+\bookmarksetup{startatroot}
+
+\chapter*{Welcome to this book of
+notes}\label{welcome-to-this-book-of-notes}
+\addcontentsline{toc}{chapter}{Welcome to this book of notes}
+
+\markboth{Welcome to this book of notes}{Welcome to this book of notes}
+
+\bookmarksetup{startatroot}
+
+\chapter{Chapter 1 - Headings}\label{sec-headings}
+
+Each row that begins with a \# is a chapter heading. So if each chapter
+is a single file it's best to only use a single \# line at the top of
+each document.
+
+\section{Models for binary/binomial response}\label{sec-binary-response}
+
+This chapter contains sections and subsections. This is the intro. Since
+the chapter title begins with a \texttt{\#}, sections begin with
+\texttt{\#\#}, and subsections should begin with \texttt{\#\#\#}.
+
+Typical default numbering will look like this:
+
+\begin{verbatim}
+Chapter 1
+Section 1.1
+Subsection 1.1.1
+Subsection 1.1.2
+Section 1.2
+Subsection 1.2.1
+Subsection 1.2.2
+Subsection 1.2.3
+Section 1.3
+\end{verbatim}
+
+The \texttt{crossref} option in your global \texttt{.yml} file does
+offer the chance to not number any chapters and just have sections in
+each chapter, if you really don't want chapters.
+
+\subsection{First subsection}\label{first-subsection}
+
+Text goes here.
+
+\subsection{Second subsection}\label{second-subsection}
+
+Text goes here. And we can reference whole sections if we wish, like
+Section~\ref{sec-binary-response}. Indeed if you look in
+Chapter~\ref{sec-links}.
+
+Let
+
+\[D_3(y) \equiv \diff[3]{y}{x}\]
+
+That was just an equation inside \texttt{\$\$} and \texttt{\$\$} tags.
+For labelled equations you need to do the slightly unusual LaTeX
+behaviour of using \texttt{\$\$} and then
+\texttt{\textbackslash{}\textbackslash{}begin\{aligned\}} or similar
+inside. So unlike in LaTeX you always need \texttt{\$\$} to start a math
+environment (because the \texttt{\$\$} tells the browser to enable math
+mode). Yes! No.~Maybe. Not.
+
+\begin{equation}\phantomsection\label{eq-AROC}{
+\begin{aligned}
+\int_0^{\infty} x^3 \dx
+\end{aligned}
+}\end{equation}
+
+This week we will learn how to model outcomes of interest that take one
+of two categorical values (e.g.~yes/no, success/failure, alive/dead).
+The independent responses \(Y_i\) can either be
+
+\begin{itemize}
+\item
+  \emph{binary} (ungrouped), taking the value 1 (say success, with
+  probability \(p_i\)) or 0 (failure, with probability \(1-p_i\)) or
+\item
+  \emph{binomial} (grouped), where \(Y_i\) is the number of successes in
+  a given number of trials \(n_i\), with the probability of success
+  being \(p_i\) and the probability of failure being \(1-p_i\).
+\end{itemize}
+
+In both cases the distribution of the \(Y_i\) is binomial, but in the
+first case it is Bin\((1,p_i)\) and in the second case it is
+Bin\((n_i,p_i)\).
+
+\section{Binomial response}\label{binomial-response}
+
+We will begin with models for binomial responses and we will look at
+exploratory plots of the data, different choices of link function and
+hypothesis tests about terms in the model. Finally we will examine
+measures of goodness of fit of the model. Let's begin with an example.
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Beetle mortality}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+This is a ``Tip Callout'' box called via
+
+\begin{verbatim}
+:::{.callout-tip}
+### Banner title like Bettle Mortality
+
+Content here. This gives coloured boxes in HTML and LaTeX.
+:::
+\end{verbatim}
+
+Now for a default code \texttt{panelset} as Quarto calls it. For
+allowing dual code presentation. See Chapter~\ref{sec-code-demo} for my
+restyled version.
+
+\subsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beetles }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{url}\NormalTok{(}\StringTok{"http://www.stats.gla.ac.uk/\textasciitilde{}tereza/rp/beetles.csv"}\NormalTok{))}
+\NormalTok{beetles}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\CommentTok{\# beetles = pd.read\_csv("beetles.csv")}
+\CommentTok{\# beetles}
+\end{Highlighting}
+\end{Shaded}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-warning-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning \ref*{tip-special}: Example}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+\quartocallouttip{tip-special} 
+
+Some text
+
+\end{tcolorbox}
+
+This box above can be linked to in the HTML via Tip~\ref{tip-special}.
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-warning-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Example}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+Some text
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-warning-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Example}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+Some text
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-warning-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning \ref*{tip-special2}: Example}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+\quartocallouttip{tip-special2} 
+
+Some text
+
+\end{tcolorbox}
+
+Only the first and last of these had a label. They were
+Tip~\ref{tip-special} and Tip~\ref{tip-special2}. Notice, however, that
+you will need to define your own custom blocks. Since a \texttt{warning}
+callout, which is used for an ``Example'' will suddenly be called
+``Warning 1.1'' since the default naming of a labelled (and thus
+numbered) block would need to be overridden.
+
+Also notice the massive confusion caused by me using the
+\texttt{\#tip-name} style label on a \texttt{warning} callout! Make sure
+to use the right prefix in the reference else it'll do this.
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-caution-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-caution-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Caution \ref*{cau-correct}: this is a caution callout}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+\quartocalloutcau{cau-correct} 
+
+The reference name begins with \texttt{\#cau-}.
+
+\end{tcolorbox}
+
+Then when I reference it like this: Caution~\ref{cau-correct}, all is
+well.
+
+\bookmarksetup{startatroot}
+
+\chapter{Week 2 -- Code demonstrations}\label{sec-code-demo}
+
+Some equations, again. Notice this chapter begins with:
+
+\begin{verbatim}
+---
+filters:
+    - stats-uog
+---
+\end{verbatim}
+
+This loads the bonus accessibility features extension I have made.
+
+\textbf{LET'S MAKE THIS CHAPTER ALL ABOUT SHOWING OFF THE ACCESSIBILITY
+STUFF}
+
+\[\diff[3]{y}{x}\]
+
+\[\int_0^{\infty} x^2 \dx\]
+
+This equation is the same as Equation~\ref{eq-AROC} from Chapter 1.
+
+\section{Features}\label{features}
+
+\begin{itemize}
+\tightlist
+\item
+  You'll first note in the bottom left is a global toggle button set.
+  You can change all code blocks to R or to Python, by clicking; or by
+  pressing \texttt{R} or \texttt{P} on the keyboard.
+\end{itemize}
+
+\section{Binomial response}\label{binomial-response-1}
+
+We will begin with models for binomial responses and we will look at
+exploratory plots of the data, different choices of link function and
+hypothesis tests about terms in the model. Finally we will examine
+measures of goodness of fit of the model. Let's begin with an example.
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Beetle mortality}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+Jump to the \hyperref[beetle-code]{Beetle code}.
+
+Data for this example consists of the number of beetles dead
+(\emph{killed}) after five hours exposure to gaseous carbon disulphide
+at various concentrations (\emph{dose}). The goal for this analysis is
+to model the probability of a beetle dying as a function of the carbon
+disulphide dose.
+
+\subsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beetles }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{url}\NormalTok{(}\StringTok{"http://www.stats.gla.ac.uk/\textasciitilde{}tereza/rp/beetles.csv"}\NormalTok{))}
+\NormalTok{beetles}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\CommentTok{\# beetles = pd.read\_csv("resources/data/beetles.csv")}
+\CommentTok{\# beetles}
+\end{Highlighting}
+\end{Shaded}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Conventional tip callout}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+Some content
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-warning-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Conventional warning callout}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+Some content
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-caution-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-caution-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Conventional caution callout}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+Some content
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Conventional note callout}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+Some content
+
+\end{tcolorbox}
+
+\bookmarksetup{startatroot}
+
+\chapter{Links chapter}\label{sec-links}
+
+This chapter can even link back to other whole chapters
+Section~\ref{sec-binary-response}. Or equations in other chapters
+Equation~\ref{eq-AROC}.
+
+\section{Section One}\label{section-one}
+
+One way to include videos is to use the Quarto syntax used to insert any
+figures, where you write
+
+\begin{verbatim}
+::: {#vid-vid3}
+{{﹤video https://youtu.be/d2nG7Y17sQw 
+  title = "Binomial response models applied to beetle mortality data (9m59s)",
+  <other customizations can be put here>
+>}}
+
+This is the caption.
+:::
+\end{verbatim}
+
+For more details:
+\href{https://quarto.org/docs/authoring/videos.html}{Quarto video
+manual}
+
+Here it is:
+
+\begin{video}
+
+\centering{
+
+\url{https://youtu.be/d2nG7Y17sQw}
+
+}
+
+\caption{\label{vid-vid3}This is the caption.}
+
+\end{video}%
+
+Referencing is simple, like this Video~\ref{vid-vid3}. Such video blocks
+must contain actual text (the caption is drawn from the final line).
+
+\section{Equations}\label{sec-equations}
+
+There is good Quarto documentation on how to crossref things
+\href{https://quarto.org/docs/authoring/cross-references.html}{Quarto
+Cross References}.
+
+The key thing to note is that if you plan to references a standard
+object like a heading/section the internal label name is restricted to
+begin with a particular three-letter prefix (except equations which get
+just \texttt{eq}). Plus they recommend against using underscores in
+labels.
+
+New prefixes can be created, as this template does with to create new
+figures for videos called \texttt{vid}. Theorems, Lemmas etc.. this
+template recommends the numbered-custom-boxes demonstrated in another
+chapter. If you follow this recommendation then you must avoid using
+names like \texttt{\#thm-fermat} because Quarto will be confused about
+which method you wish. So in the examples presented I have just started
+all references with \texttt{\#r} to avoid overlap,
+e.g.~\texttt{\#rthm-fermat}.
+
+Here's an equation: \begin{equation}\phantomsection\label{eq-squares}{
+\begin{aligned}
+x^2 + y^2 = z^2
+\end{aligned}
+}\end{equation} This equation was created using Quarto labelling syntax,
+i.e.~like this
+
+\begin{verbatim}
+$$
+\begin{aligned}
+x^2 + y^2 = z^2
+\end{aligned}
+$$ {#eq-squares}
+\end{verbatim}
+
+Then you type \texttt{@eq-squares} to get Equation~\ref{eq-squares}.
+
+This section was defined like this
+
+\begin{verbatim}
+## Equations {#sec-equations}
+\end{verbatim}
+
+as such we can now type \texttt{@sec-equations} and it will render as
+Section~\ref{sec-equations}.
+
+Quarto even provides a clever `hover to see a preview function'. If you
+don't want it there are ways to disable it (I found it messed with
+tabbing through the page on one of my machines).
+
+The main drawback to using the Quarto numbering system is for equation
+blocks (equations on many consecutive lines), where the way LaTeX offers
+individually labelling of lines Quarto doesn't. There is a more complex
+workaround to delegate all labelling of equations to MathJax (the
+javascript equation renderer but I haven't gone with that).
+
+\bookmarksetup{startatroot}
+
+\chapter{Chapter 4 - Nicer boxes}\label{chapter-4---nicer-boxes}
+
+This chapter shows off some nice coloured boxes. They come from the
+\texttt{custom-numbered-blocks} extension. First you need to install the
+extension \texttt{quarto\ add\ ute/custom-numbered-blocks}.
+
+This code has then been added to the \texttt{\_quarto.yml} or
+\texttt{\_metadata.yml} file (or at the top of this file) to load the
+coloured boxes.
+
+\begin{verbatim}
+filters:
+  - custom-numbered-blocks # This loads the extension
+
+# This is ute-hahn's nice coloured boxes: setup
+custom-numbered-blocks:
+  groups:
+    thmlike:
+      colors: [948bde, 584eab]
+      boxstyle: foldbox.simple
+    deflike:
+      colors: [ffdc36, ffb948]
+      boxstyle: foldbox.simple
+    videolike:
+      colors: [beb9eb, 877eda]
+      boxstyle: foldbox.simple
+      collapse: open
+  classes:
+    Theorem:
+      group: thmlike
+    Lemma:
+      group: thmlike
+    Corollary:
+      group: thmlike
+    Definition:
+      group: deflike
+    Video:
+      group: videolike
+      
+crossref:
+  chapters: true
+\end{verbatim}
+
+\section{Custom Numbered Blocks}\label{custom-numbered-blocks}
+
+We've defined several custom-numbered block types using the
+\texttt{custom-numbered-blocks} option. The key point is that these can
+be numbered and follow grouped numbering conventions.
+
+Each block belongs to a \textbf{group} that determines its shared
+numbering.
+
+All of these blocks are \emph{foldable}, meaning they can be opened and
+closed. The \texttt{collapse} setting determines the starting state.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1039}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2338}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3117}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2078}}@{}}
+\caption{This is the table's caption}\label{tbl-boxcols}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Box Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Group
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Title Background Color
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Left Border Color
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Default State
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Box Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Group
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Title Background Color
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Left Border Color
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Default State
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Theorem & \texttt{thmlike} & {}\texttt{\#948bde} & {}\texttt{\#584eab} &
+Open / Closeable \\
+Lemma & \texttt{thmlike} & {}\texttt{\#b2dac4} & {}\texttt{\#004721} &
+Open / Closeable \\
+Corollary & \texttt{thmlike} & {}\texttt{\#7fbad7} & {}\texttt{\#005398}
+& Open / Closeable \\
+Definition & \texttt{deflike} & {}\texttt{\#ffdc36} &
+{}\texttt{\#ffb948} & Open / Closeable \\
+Video & \texttt{videolike} & {}\texttt{\#d18888} & {}\texttt{\#660000} &
+Open / Closeable \\
+\end{longtable}
+
+These boxes also have dark-mode versions, see below. Tables like this
+can have captions, and be referenced Table~\ref{tbl-boxcols}. They can
+also have styling added.
+
+\begin{quote}
+Note: The two colors defined for each group represent the \textbf{left
+border} and the \textbf{title background}.
+\end{quote}
+
+Here's an alternative to treating videos are float/figures, put them in
+their own box and use the title of the box to describe the video.
+
+\phantomsection\label{vidFirst}
+\begin{fbxSimple}{Video}{Video 1: }{Binomial response models applied to beetle mortality data (9m59)}
+\phantomsection\label{vidFirst}
+There is some text here before the video
+
+\url{https://youtu.be/d2nG7Y17sQw}
+
+\end{fbxSimple}
+
+\subsection{Beetle mortality data}\label{beetle-mortality-data}
+
+Here's some famous beetle data. The R code is folded (and thus
+hideable), the Python code isn't folded so cannot be folded away.
+
+\subsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beetles }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{url}\NormalTok{(}\StringTok{"http://www.stats.gla.ac.uk/\textasciitilde{}tereza/rp/beetles.csv"}\NormalTok{))}
+\NormalTok{beetles}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\CommentTok{\# beetles = pd.read\_csv("resources/data/beetles.csv")}
+\CommentTok{\# beetles}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Conventional tip callout}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+Some content
+
+\end{tcolorbox}
+
+\phantomsection\label{bestlemma}
+\begin{fbxSimple}{Lemma}{Lemma 1: }{Super}
+\phantomsection\label{bestlemma}
+This is a fantastic Lemma.
+
+\end{fbxSimple}
+
+There are no Lemma's better than Lemma \hyperref[bestlemma]{1}. Note
+that referencing of these coloured boxes works like LaTeX's
+\texttt{\textbackslash{}ref\{\}} command, thus it just renders the
+number, and you have to write the object name in front. This is in
+contrast to the \texttt{@lem-name} Quarto notation.
+
+The other way to embed a video is inside a fenced div and treat it like
+a figure, as we saw in other chapters.
+
+Our video in this chapter was embedded inside a custom numbered block
+and it was called \hyperref[vidFirst]{Video \hyperref[vidFirst]{1}}.
+
+\section{Demonstration of Custom Numbered
+Blocks}\label{demonstration-of-custom-numbered-blocks}
+
+Below are examples of the custom-numbered blocks.\\
+Each block is foldable (open or closed by default) and has its own
+colour scheme and group style as defined in your YAML configuration.
+
+Notice Theorem, Corollary and Lemma has been defined to share counter.
+Unlike Video and Definition have their own types (\emph{deflike} and
+\emph{vidlike}).
+
+\phantomsection\label{rthmpythag}
+\begin{fbxSimple}{Theorem}{Theorem 2: }{Pythagoras’ Theorem}
+\phantomsection\label{rthmpythag}
+In a right-angled triangle\ldots{}
+
+\end{fbxSimple}
+
+\phantomsection\label{Rcor-pythag}
+\begin{fbxSimple}{Corollary}{Corollary 3: }{Corollary to Pythagoras’ Theorem}
+\phantomsection\label{Rcor-pythag}
+In a right-angled triangle, if the two shorted sides are equal, so that
+\(a = b\), then the hypotenuse satisfies \(c=a\sqrt{2}\).
+
+\end{fbxSimple}
+
+\phantomsection\label{Rlem-euclid}
+\begin{fbxSimple}{Lemma}{Lemma 4: }{Euclid}
+\phantomsection\label{Rlem-euclid}
+If two lines are perpendicular to the same line, then they are parallel
+to each other.
+
+\end{fbxSimple}
+
+\phantomsection\label{Rvid-yt}
+\begin{fbxSimple}{Video}{Video 2: }{Video Demonstration}
+\phantomsection\label{Rvid-yt}
+Here's a Youtube video:
+
+\url{https://youtu.be/d2nG7Y17sQw}
+
+\end{fbxSimple}
+
+\phantomsection\label{Rdef-orthog}
+\begin{fbxSimple}{Definition}{Definition 1: }{Definition of Orthogonality}
+\phantomsection\label{Rdef-orthog}
+Two vectors \(\mathbf{u}\) and \(\mathbf{v}\) are said to be
+\emph{orthogonal} if their dot product is zero: \[
+\mathbf{u} \cdot \mathbf{v} = 0.
+\]
+
+\end{fbxSimple}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Referencing the Blocks}\label{referencing-the-blocks}
+
+You can reference the blocks defined above using their labels:
+
+\begin{itemize}
+\tightlist
+\item
+  The main result is stated in Theorem \hyperref[rthmpythag]{2}.
+\item
+  Checkout Corollary \hyperref[Rcor-pythag]{3}.\\
+\item
+  The proof uses Lemma \hyperref[Rlem-euclid]{4}.\\
+\item
+  Then there's Definition \hyperref[Rdef-orthog]{1}.\\
+\item
+  Finally, see Video \hyperref[Rvid-yt]{2}.
+\end{itemize}
+
+If we want we can wrap the \texttt{\textbackslash{}ref\{\}} inside a
+hyperlink to get \hyperref[rthmpythag]{Theorem
+\hyperref[rthmpythag]{2}}, \hyperref[Rcor-pythag]{Corollary
+\hyperref[Rcor-pythag]{3}}, etc\ldots{}
+
+\section{Customization}\label{customization}
+
+Each box has to define four colours. In the file mentioned above the
+light-mode border and background are set. For those using dark-mode you
+also need to define a dark mode pair. See
+\href{../themes/dark-styles-boxes.scss}{dark styles boxes stylesheet}.
+
+\bookmarksetup{startatroot}
+
+\chapter{Chapter 5}\label{chapter-5}
+
+\section{\texorpdfstring{R package:
+\texttt{webexercises}}{R package: webexercises}}\label{r-package-webexercises}
+
+Some people are using external R packages like \texttt{webexercises},
+they will just work out of the box. You load it like this, I've added an
+extra function to attach accessibility aria labels to the entry boxes
+later.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}}
+\FunctionTok{library}\NormalTok{(webexercises)}
+
+\CommentTok{\# To allow injection of aria{-}labels}
+\NormalTok{in\_labelled\_fitb }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(answer, label\_text, ...) \{}
+\NormalTok{  html }\OtherTok{\textless{}{-}}\NormalTok{ webexercises}\SpecialCharTok{::}\FunctionTok{fitb}\NormalTok{(answer, ...)}
+  \CommentTok{\# Insert aria{-}label into the \textless{}input ...\textgreater{} tag}
+\NormalTok{  html }\OtherTok{\textless{}{-}} \FunctionTok{sub}\NormalTok{(}
+    \StringTok{"\textless{}input "}\NormalTok{,}
+    \FunctionTok{paste0}\NormalTok{(}\StringTok{"\textless{}input aria{-}label=}\SpecialCharTok{\textbackslash{}"}\StringTok{"}\NormalTok{, label\_text, }\StringTok{"}\SpecialCharTok{\textbackslash{}"}\StringTok{ "}\NormalTok{),}
+\NormalTok{    html}
+\NormalTok{  )}
+\NormalTok{  html}
+\NormalTok{\}}
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{webexercises} package also comes with a css and js file, so
+you typically need to add the following to the \texttt{\_metadata.yml}
+in the folder for the file being rendered (or in the global
+\texttt{\_quarto.yml}) if you want it literally everywhere.
+
+\begin{verbatim}
+format:
+  html:
+    css:
+      - include/webex.css
+    include-after-body: include/webex.js
+\end{verbatim}
+
+Here's an example someone may recognise.
+
+\phantomsection\label{Example-1}
+\begin{fbxSimple}{Example}{Example 1}{}
+\phantomsection\label{Example-1}
+Consider a function taking arguments \texttt{a}, \texttt{b} and
+\texttt{c} and returning \((a+2\times b)^c\), defined as set out below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{func }\OtherTok{\textless{}{-}}  \ControlFlowTok{function}\NormalTok{(a, }\AttributeTok{b =} \DecValTok{0}\NormalTok{, }\AttributeTok{c =} \DecValTok{1}\NormalTok{)\{}
+\NormalTok{    (a }\SpecialCharTok{+} \DecValTok{2} \SpecialCharTok{*}\NormalTok{ b)}\SpecialCharTok{\^{}}\NormalTok{c}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Rewrite the calls below into named form (i.e.~using
+\texttt{parameter\ =\ value}) and give the output of \texttt{func}
+without running it in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{func}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This is the equivalent to \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ and it
+returns the value \_\_\_.
+
+\end{fbxSimple}
+
+\section{Numbas embedding}\label{numbas-embedding}
+
+Another opportunity with HTML is to embed via an iframe to some external
+content.
+
+I have embedded some functions insider \texttt{\_common.R} which setup
+how to do this via an R function. You need to first create your Numbas
+question, then preview it, and click \emph{Download}. This provides a
+zip file, which you unzip and place the folder into
+\texttt{/resources/numbas/\textless{}your-chosen-name\textgreater{}}.
+Then in the code below you just point to the \texttt{index.html} for the
+question. Questions are of varying heights and widths too, so you can
+customize it in when you create the iframe.
+
+\subsection{Plain version (no web
+version)}\label{plain-version-no-web-version}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}}
+\FunctionTok{numbaselement}\NormalTok{(}\StringTok{"/resources/numbas/Q13/index.html"}\NormalTok{, }\AttributeTok{iwidth=}\StringTok{"90\%"}\NormalTok{, }\AttributeTok{iheight=}\StringTok{"900px"}\NormalTok{)}
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+A Numbas question appears here in the HTML version.
+
+\subsection{Version with a hyperlink in the
+PDF}\label{version-with-a-hyperlink-in-the-pdf}
+
+If you want the PDF version to contain an actual hyperlink then you need
+to get a link to a website version of your question, like this example
+below. You could try and always use this link rather than the local
+download below, but the you are dependent on the external website.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}}
+\FunctionTok{numbaselement}\NormalTok{(}
+  \StringTok{"/resources/numbas/Q13/index.html"}\NormalTok{,}
+  \AttributeTok{iwidth =} \StringTok{"90\%"}\NormalTok{,}
+  \AttributeTok{iheight =} \StringTok{"900px"}\NormalTok{,}
+  \AttributeTok{url =} \StringTok{"https://numbas.mathcentre.ac.uk/question/119566/matrix{-}lin\textbackslash{}}
+\StringTok{  ear{-}combination/embed/?token=e221efa1{-}3a50{-}429c{-}bb4a{-}8c63d2610114"}
+\NormalTok{)}
+\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+\href{https://numbas.mathcentre.ac.uk/question/119566/matrix-lin
+  ear-combination/embed/?token=e221efa1-3a50-429c-bb4a-8c63d2610114}{Link to Numbas question}
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+I inserted the \texttt{\textbackslash{}} symbol in the long url address,
+to render nicely for you, but users don't normally see it.
+
+When presenting you will set \texttt{echo:\ false} on the block anyway,
+so the user only sees the question.
+
+\end{tcolorbox}
+
+\subsection{Hiding a numbas task}\label{hiding-a-numbas-task}
+
+An alternative to having a large space-using question, is to hide inside
+a collapsed box like the following.
+
+\phantomsection\label{Task-1}
+\begin{fbxSimple}{Task}{Task 1}{}
+\phantomsection\label{Task-1}
+
+A Numbas question appears here in the HTML version.
+
+\end{fbxSimple}
+
+\bookmarksetup{startatroot}
+
+\chapter{Chapter 6}\label{chapter-6}
+
+\section{Invisible text}\label{invisible-text}
+
+I have a Quarto extension
+\href{https://github.com/david-hodge/invis}{Invisible text extension} to
+make hiding text easy. Mostly for us in gapped notes, or perhaps
+handouts.
+
+It implemented by simply setting text to fully transparent (and not
+selectable). Screenreaders \textbf{will} be able to see it, and they
+will also get informative notifications about the visibly hidden text.
+In LaTeX/PDF it is rendered as white text.
+
+Just install it as any other extension via
+
+\begin{verbatim}
+quarto add david-hodge/invis
+\end{verbatim}
+
+and then you can use it via usage of the following shortcodes.
+
+\subsection{Simple hiding}\label{simple-hiding}
+
+\begin{description}
+\tightlist
+\item[\texttt{\{\{\textless{}\ invis\ start\ \textgreater{}\}\}}]
+This starts invisibility
+\item[\texttt{\{\{\textless{}\ invis\ end\ \textgreater{}\}\}}]
+This ends invisibility
+\end{description}
+
+By default these are designed to hide a single block/element on a page.
+It can hide a single equation, a single word, a single line or text,
+etc.. \emph{However} it cannot hide multiple paragraphs or more complex
+elements.
+
+\subsection{Hiding larger elements}\label{hiding-larger-elements}
+
+To hide more complex elements, use the \texttt{block} extra paramater.
+
+\begin{description}
+\tightlist
+\item[\texttt{\{\{\textless{}\ invis\ start\ block\ \textgreater{}\}\}}]
+This starts invisibility for a large element
+\item[\texttt{\{\{\textless{}\ invis\ end\ block\ \textgreater{}\}\}}]
+This ends invisibility for a large element
+\end{description}
+
+\subsection{Examples}\label{examples}
+
+This first sentence is fully visible.
+
+\begingroup\color{white} This second sentence is fully visible.
+\endgroup
+
+This third sentence is fully visible.
+
+\begin{tcolorbox}[enhanced jigsaw, coltitle=black, leftrule=.75mm, bottomtitle=1mm, colframe=quarto-callout-warning-color-frame, opacitybacktitle=0.6, colback=white, toprule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, toptitle=1mm, titlerule=0mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Warning}, arc=.35mm, opacityback=0, rightrule=.15mm, bottomrule=.15mm, breakable, left=2mm]
+
+I don't imagine you would wish, but should you wish to hide some
+fundamental Quarto object like a code block and the resulting output you
+are recommended to use the built-in features like setting
+\texttt{echo:\ false} on the code block.
+
+You can use this \texttt{invis} extension to hide large blocks of
+content in the HTML, but for such elements they will likely appear in
+the PDF, since all we are doing is setting standard text as white, and
+code and plots are not standard text.
+
+\begingroup\color{white}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(cars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{Ch6_files/figure-pdf/fig-cars-plot-1.pdf}}
+
+}
+
+\caption{\label{fig-cars-plot}This is the caption}
+
+\end{figure}%
+
+\endgroup
+
+The code and output plot above are fully hidden in the HTML. Likely
+fully visible in the PDF.
+
+\end{tcolorbox}
+
+
+
+
+\end{document}

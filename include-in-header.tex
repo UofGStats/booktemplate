@@ -4,9 +4,11 @@
 % This is how the two files are included in the _quarto.yaml header of the qmd file
 %format:
 %  html:
-%    defaults: [mymacros.style]
+%    defaults: [resources/latex/global-maths-definitions.yaml]
 %  pdf:
 %   include-in-header: ["include-in-header.tex"]
+
+% the 'defaults' above secretly points to mymacros.sty where they really live.
 
 \usepackage{gensymb}
 \usepackage{amsmath}
@@ -14,7 +16,7 @@
 
 \usepackage[skins,breakable]{tcolorbox}
 
-% Code to reduce width of code blocks in PDF to insert more line breaks
+% Code to reduce width of code blocks in PDF to encourage line wrapping
 \usepackage{fvextra}
       \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
         breaklines,
@@ -27,21 +29,24 @@
 
 \usepackage{environ}
 
-\definecolor{goals-col}{RGB}{201, 232, 222}
+% Below here is an old way to defining new custom coloured boxes.
+% We use nice extensions now.
 
-% For defining new callout boxes
-% HTML version is in CSS file
-% Need to turn on goals and goals-header as environments using the latex-environment extension for quarto
-% This is designed to work for the following fenced div syntax:
-% :::{.goals}
-% ::::{.goals-header}
-% TITLE
-% ::::
-% Actual box contents
-% :::
-\newtcolorbox{goals}[1][]{notitle, top=0pt, boxsep=0pt, coltitle=black!90!white, colback=white, colframe=goals-col,#1}
-\NewEnviron{goals-header}{\tcbsubtitle[top=1mm, bottom=1mm]{\BODY}}
-% It works by creating a box with no title. Then no spacing. Then a subtitle defined later.
+% \definecolor{goals-col}{RGB}{201, 232, 222}
+% 
+% % For defining new callout boxes
+% % HTML version is in CSS file
+% % Need to turn on goals and goals-header as environments using the latex-environment extension for quarto
+% % This is designed to work for the following fenced div syntax:
+% % :::{.goals}
+% % ::::{.goals-header}
+% % TITLE
+% % ::::
+% % Actual box contents
+% % :::
+% \newtcolorbox{goals}[1][]{notitle, top=0pt, boxsep=0pt, coltitle=black!90!white, colback=white, colframe=goals-col,#1}
+% \NewEnviron{goals-header}{\tcbsubtitle[top=1mm, bottom=1mm]{\BODY}}
+% % It works by creating a box with no title. Then no spacing. Then a subtitle defined later.
 
 % Increasing spacing between rows of tables
 \def\arraystretch{2}

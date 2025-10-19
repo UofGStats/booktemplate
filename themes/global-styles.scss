@@ -80,3 +80,18 @@ $font-family-serif: "Atkinson Hyperlegible", sans-serif;
   font-size: 1em;
   margin-top: 0.25rem;
 }
+
+// Hide top of file latex definitions
+
+main > header + p {
+  display: none;
+}
+
+// Invisible text
+
+.invisible-text {
+  color: transparent;
+  user-select: none;
+}
+
+

@@ -50,19 +50,34 @@ Each block belongs to a **group** that determines its shared numbering.
 
 All of these blocks are *foldable*, meaning they can be opened and closed. The `collapse` setting determines the starting state.
 
-| Box Name | Group     | Left Border Color | Title Background Color |  Default State |
-|-------------|------------|-------------------|------------------------|-----------------|
-| Theorem     | `thmlike`  | `#948bde`         | `#584eab`              |  Open / Closeable |
-| Lemma       | `thmlike`  | `#b2dac4`         | `#004721`              |  Open / Closeable |
-| Corollary   | `thmlike`  | `#7fbad7`         | `#005398`              |  Open / Closeable |
-| Definition  | `deflike`  | `#ffdc36`         | `#ffb948`              |  Open / Closeable |
-| Video       | `videolike`| `#d18888`         | `#660000`              |  Open / Closeable |
+<style>
+.colorbox {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  margin-right: 0.3em;
+  vertical-align: middle;
+}
+</style>
+
+| Box Name | Group | Title Background Color | Left Border Color | Default State |
+|-----------|--------|------------------|------------------------|----------------|
+| Theorem   | `thmlike`  | <span class="colorbox" style="background-color:#948bde;"></span>`#948bde` | <span class="colorbox" style="background-color:#584eab;"></span>`#584eab` | Open / Closeable |
+| Lemma     | `thmlike`  | <span class="colorbox" style="background-color:#b2dac4;"></span>`#b2dac4` | <span class="colorbox" style="background-color:#004721;"></span>`#004721` | Open / Closeable |
+| Corollary | `thmlike`  | <span class="colorbox" style="background-color:#7fbad7;"></span>`#7fbad7` | <span class="colorbox" style="background-color:#005398;"></span>`#005398` | Open / Closeable |
+| Definition| `deflike`   | <span class="colorbox" style="background-color:#ffdc36;"></span>`#ffdc36` | <span class="colorbox" style="background-color:#ffb948;"></span>`#ffb948` | Open / Closeable |
+| Video     | `videolike` | <span class="colorbox" style="background-color:#d18888;"></span>`#d18888` | <span class="colorbox" style="background-color:#660000;"></span>`#660000` | Open / Closeable |
+
+: This is the table's caption {#tbl-boxcols}
+
+These boxes also have dark-mode versions, see below. Tables like this can have captions, and be referenced @tbl-boxcols. They can also have styling added.
 
 > Note:
-> The two colors defined for each group represent the **left border** (first color) and the **title background** (second color).
+> The two colors defined for each group represent the **left border** and the **title background**.
 
-These boxes also have dark-mode versions, see below.
-
+Here's an alternative to treating videos are float/figures, put them in their own box and use the title of the box to describe the video.
 
 :::{.Video #vidFirst}
 ## Binomial response models applied to beetle mortality data (9m59)  
@@ -75,9 +90,9 @@ There is some text here before the video
 :::
 
 :::{.example}
-### Beetle mortality
+### Beetle mortality data
 
-Data for this example consists of the number of beetles dead (*killed*) after five hours exposure to gaseous carbon disulphide at various concentrations (*dose*). The goal for this analysis is to model the probability of a beetle dying as a function of the carbon disulphide dose. 
+Here's some famous beetle data. The R code is folded (and thus hideable), the Python code isn't folded so cannot be folded away.
 
 ::::::{.panel-tabset}
 
@@ -113,18 +128,18 @@ Some content
 This is a fantastic Lemma.
 :::
 
-There are no Lemma's better than Lemma \ref{bestlemma}.
+There are no Lemma's better than Lemma \ref{bestlemma}. Note that referencing of these coloured boxes works like LaTeX's `\ref{}` command, thus it just renders the number, and you have to write the object name in front. This is in contrast to the `@lem-name` Quarto notation.
 
-The other way to embed a video is inside a fenced div which just contains a label starting with \# like this:
+The other way to embed a video is inside a fenced div and treat it like a figure, as we saw in other chapters.
 
-Our first video was embedded inside a custom numbered block and it was called Video \ref{vidFirst}.
+Our video in this chapter was embedded inside a custom numbered block and it was called [Video \ref{vidFirst}](#vidFirst).
 
 ## Demonstration of Custom Numbered Blocks
 
 Below are examples of the custom-numbered blocks.  
-Each block is foldable (open by default) and has its own color scheme and group style as defined in your YAML configuration.
+Each block is foldable (open or closed by default) and has its own colour scheme and group style as defined in your YAML configuration.
 
-Notice Theorem, Corollary and Lemma has been defined to share counter. But Definition and Video have their own types (*deflike* and *vidlike*).
+Notice Theorem, Corollary and Lemma has been defined to share counter. Unlike Video and Definition have their own types (*deflike* and *vidlike*).
 
 ::: {.Theorem #rthmpythag}
 ## Pythagoras' Theorem
@@ -144,15 +159,6 @@ In a right-angled triangle, if the two shorted sides are equal, so that $a = b$,
 If two lines are perpendicular to the same line, then they are parallel to each other.
 :::
 
-::: {.Definition #Rdef-orthog} 
-## Definition of Orthogonality
-
-Two vectors $\mathbf{u}$ and $\mathbf{v}$ are said to be *orthogonal* if their dot product is zero:
-$$
-\mathbf{u} \cdot \mathbf{v} = 0.
-$$
-:::
-
 ::: {.Video #Rvid-yt}
 ## Video Demonstration
  
@@ -161,6 +167,15 @@ Here's a Youtube video:
 {{< video https://youtu.be/d2nG7Y17sQw 
   title = "Binomial response models applied to beetle mortality data (9m59s)"
 >}}
+:::
+
+::: {.Definition #Rdef-orthog} 
+## Definition of Orthogonality
+
+Two vectors $\mathbf{u}$ and $\mathbf{v}$ are said to be *orthogonal* if their dot product is zero:
+$$
+\mathbf{u} \cdot \mathbf{v} = 0.
+$$
 :::
 
 ---
@@ -175,7 +190,9 @@ You can reference the blocks defined above using their labels:
 - Then there's Definition \ref{Rdef-orthog}.  
 - Finally, see Video \ref{Rvid-yt}.
 
+If we want we can wrap the `\ref{}` inside a hyperlink to get [Theorem \ref{rthmpythag}](#rthmpythag), [Corollary \ref{Rcor-pythag}](#Rcor-pythag), etc...
+
 ## Customization
 
-Each box has to define four colours. In the file mentioned above the light-mode border and background are set. For those using dark-mode you also need to define a dark mode pair. See [dark box colour stylesheet](themes/dark-styles-boxes.scss).
+Each box has to define four colours. In the file mentioned above the light-mode border and background are set. For those using dark-mode you also need to define a dark mode pair. See [dark styles boxes stylesheet](../themes/dark-styles-boxes.scss).
 

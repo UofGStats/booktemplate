@@ -1,7 +1,115 @@
 ---
-filters:
-  - stats-uog
+format:
+  html:
+    css:
+    - resources/webex/webex.css
+    include-after-body: resources/webex/webex.js
 ---
 
-# Chapter 5 - 
-  
+# Chapter 5
+
+## R package: `webexercises`
+
+Some people are using external R packages like `webexercises`, they will just work out of the box. You load it like this, I've added an extra function to attach accessibility aria labels to the entry boxes later.
+
+```{r}
+#| echo: fenced
+library(webexercises)
+
+# To allow injection of aria-labels
+in_labelled_fitb <- function(answer, label_text, ...) {
+  html <- webexercises::fitb(answer, ...)
+  # Insert aria-label into the <input ...> tag
+  html <- sub(
+    "<input ",
+    paste0("<input aria-label=\"", label_text, "\" "),
+    html
+  )
+  html
+}
+```
+
+The `webexercises` package also comes with a css and js file, so you typically need to add the following to the `_metadata.yml` in the folder for the file being rendered (or in the global `_quarto.yml`) if you want it literally everywhere.
+```
+format:
+  html:
+    css:
+      - include/webex.css
+    include-after-body: include/webex.js
+```
+
+Here's an example someone may recognise.
+
+:::{.Example}
+
+Consider a function taking arguments `a`, `b` and `c` and returning $(a+2\times b)^c$, defined as set out below.
+
+```{r}
+func <-  function(a, b = 0, c = 1){
+    (a + 2 * b)^c
+}
+```
+
+Rewrite the calls below into named form (i.e. using `parameter = value`) and give the output of `func` without running it in R.
+
+```{r, eval=FALSE}
+func(1, 2, 3)
+```
+
+This is the equivalent to `r in_labelled_fitb(
+  c("func(a=1,b=2,c=3)",
+    "func(a=1,c=3,b=2)",
+    "func(b=2,a=1,c=3)",
+    "func(b=2,c=3,a=1)",
+    "func(c=3,a=1,b=2)",
+    "func(c=3,b=2,a=1)"),
+  label_text = "fill in the equivalent function call"
+)` 
+and it returns the value 
+`r in_labelled_fitb("125", label_text = "fill in the return value")`.
+:::
+
+## Numbas embedding
+
+Another opportunity with HTML is to embed via an iframe to some external content.
+
+I have embedded some functions insider `_common.R` which setup how to do this via an R function. You need to first create your Numbas question, then preview it, and click *Download*. This provides a zip file, which you unzip and place the folder into `/resources/numbas/<your-chosen-name>`. Then in the code below you just point to the `index.html` for the question. Questions are of varying heights and widths too, so you can customize it in when you create the iframe.
+
+### Plain version (no web version)
+
+```{r}
+#| echo: fenced
+numbaselement("/resources/numbas/Q13/index.html", iwidth="90%", iheight="900px")
+```
+
+### Version with a hyperlink in the PDF
+
+If you want the PDF version to contain an actual hyperlink then you need to get a link to a website version of your question, like this example below. You could try and always use this link rather than the local download below, but the you are dependent on the external website.
+
+```{r}
+#| echo: fenced
+numbaselement(
+  "/resources/numbas/Q13/index.html",
+  iwidth = "90%",
+  iheight = "900px",
+  url = "https://numbas.mathcentre.ac.uk/question/119566/matrix-lin\
+  ear-combination/embed/?token=e221efa1-3a50-429c-bb4a-8c63d2610114"
+)
+```
+
+:::{.callout-note}
+I inserted the `\` symbol in the long url address, to render nicely for you, but users don't normally see it. 
+
+When presenting you will set `echo: false` on the block anyway, so the user only sees the question.
+:::
+
+### Hiding a numbas task
+
+An alternative to having a large space-using question, is to hide inside a collapsed box like the following.
+
+:::{.Task}
+```{r}
+#| echo: false
+numbaselement("/resources/numbas/Q13/index.html", iwidth="90%", iheight="900px")
+```
+:::

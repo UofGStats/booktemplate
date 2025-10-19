@@ -19,6 +19,7 @@
   font-size: var(--bs-body-font-size);
 }
 
+/* Disabled old custom boxes
 .goals {
   margin: 1em 0;
   border: 2px solid $callout-border-color-default;
@@ -58,6 +59,7 @@
 .goals-container > p, .goals-header > p {
   margin-bottom: 5px;
 }
+*/
 
 // This stuff below is another way to make custom callouts, and is more general. It really does copy styles from callouts, so allows collapse etc..
 // variables for this were defined at the top too.
