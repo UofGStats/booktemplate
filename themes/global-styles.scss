@@ -94,4 +94,10 @@ main > header + p {
   user-select: none;
 }
 
+// Override caption color to improve contrast
+
+figcaption, .table caption,
+.column-margin figcaption {
+  color: var(--bs-caption-color);
+}
 
