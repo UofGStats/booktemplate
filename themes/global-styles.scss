@@ -97,7 +97,7 @@ main > header + p {
 // Override caption color to improve contrast
 
 figcaption, .table caption,
-.column-margin figcaption {
-  color: var(--bs-caption-color);
+.column-margin figcaption, .footnotes {
+  color: var(--bs-caption-color) !important;
 }
 

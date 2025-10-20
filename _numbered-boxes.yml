@@ -25,19 +25,23 @@ custom-numbered-blocks:
       colors: [ ffdc36, ffb948]
       boxstyle: foldbox.simple
     videolike:
-      colors: [ d18888, 660000] 
+      colors: [c7f3fc, 7ee3f8] #[ d18888, 660000] 
       boxstyle: foldbox.simple
       collapse: open
     thmlike:
       colors: [948bde, 584eab]
       boxstyle: foldbox.simple
+    supplike:
+      colors: [c7f3fc, 7ee3f8]
+      boxstyle: foldbox.simple
+      collapse: true
   classes:
     Example:
       group: examplelike
       collapse: false
     Task:
       group: tasklike
-      collapse: true
+      collapse: false
     Answer:
       group: anslike
       collapse: true
@@ -59,3 +63,5 @@ custom-numbered-blocks:
       group: thmlike
     Video:
       group: videolike
+    Supplement:
+      group: supplike

@@ -6,6 +6,9 @@
 
 // Callout styling - New coloured callouts
 
+$example-border-color: #66b58a;
+$example-title-bg-color:#004721;
+
 $video-border-color: #beb9eb;
 $video-title-bg-color: #877eda;
 
@@ -23,6 +26,22 @@ $theorem-title-bg-color: #584eab;
 
 $corollary-border-color: #7fbad7;
 $corollary-title-bg-color: #005398;
+
+$supplement-border-color: #44595E;
+$supplement-title-bg-color: #274370;
+
+$task-border-color: #948bde;
+$task-title-bg-color: #584eab;
+
+$answer-border-color: #d18888;
+$answer-title-bg-color: #660000;
+
+$weblink-border-color: #44595E;
+$weblink-title-bg-color: #274370;
+
+.Example {
+  @include numbered-box-dark-mode($example-border-color, $example-title-bg-color, $body-color);
+}
 
 .Video {
   @include numbered-box-dark-mode($video-border-color, $video-title-bg-color, $body-color);
@@ -42,4 +61,20 @@ $corollary-title-bg-color: #005398;
 
 .Corollary {
   @include numbered-box-dark-mode($corollary-border-color, $corollary-title-bg-color, $body-color);
+}
+
+.Supplement {
+  @include numbered-box-dark-mode($supplement-border-color, $supplement-title-bg-color, $body-color);
+}
+
+.Task {
+  @include numbered-box-dark-mode($task-border-color, $task-title-bg-color, $body-color);
+}
+
+.Answer {
+  @include numbered-box-dark-mode($answer-border-color, $answer-title-bg-color, $body-color);
+}
+
+.Weblink {
+  @include numbered-box-dark-mode($weblink-border-color, $weblink-title-bg-color, $body-color);
 }
