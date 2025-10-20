@@ -50,6 +50,8 @@ filters:
   - latex-environment # This saves having to type data-latex="" all the time
   - fontawesome # This loads a large bank of nice icons
   - custom-numbered-blocks
+  - invis # My invisibility blocks
+  - iframe # My iframe embedder (for Numbas)
 environments: [term] # See latex-environment above
 commands: [term]
 use-rsvg-convert: true

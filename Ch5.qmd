@@ -77,39 +77,50 @@ I have embedded some functions insider `_common.R` which setup how to do this vi
 
 ### Plain version (no web version)
 
-```{r}
-#| echo: fenced
-numbaselement("/resources/numbas/Q13/index.html", iwidth="90%", iheight="900px")
 ```
+{{{< iframe path = "/resources/numbas/Q13/index.html"
+  width = "90%"
+  height = "900px"
+  >}}}
+```
+
+{{< iframe path = "/resources/numbas/Q13/index.html"
+  width = "90%"
+  height = "900px"
+  >}}
 
 ### Version with a hyperlink in the PDF
 
 If you want the PDF version to contain an actual hyperlink then you need to get a link to a website version of your question, like this example below. You could try and always use this link rather than the local download below, but the you are dependent on the external website.
 
-```{r}
-#| echo: fenced
-numbaselement(
-  "/resources/numbas/Q13/index.html",
-  iwidth = "90%",
-  iheight = "900px",
+```
+{{{< iframe path = "/resources/numbas/Q13/index.html",
+  width = "90%",
+  height = "900px",
   url = "https://numbas.mathcentre.ac.uk/question/119566/matrix-lin\
   ear-combination/embed/?token=e221efa1-3a50-429c-bb4a-8c63d2610114"
-)
+>}}}
 ```
+{{< iframe path = "/resources/numbas/Q13/index.html"
+  width = "90%"
+  height = "900px"
+  url = "https://numbas.mathcentre.ac.uk/question/119566/matrix-linear-combination/embed/?token=e221efa1-3a50-429c-bb4a-8c63d2610114"
+  urltext = "Link to Numbas question"
+>}}
+
 
 :::{.callout-note}
 I inserted the `\` symbol in the long url address, to render nicely for you, but users don't normally see it. 
 
-When presenting you will set `echo: false` on the block anyway, so the user only sees the question.
+When presenting the user never sees the code anyway.
 :::
 
-### Hiding a numbas task
+### Hiding a Numbas task
 
 An alternative to having a large space-using question, is to hide inside a collapsed box like the following.
 
-:::{.Task}
-```{r}
-#| echo: false
-numbaselement("/resources/numbas/Q13/index.html", iwidth="90%", iheight="900px")
-```
+:::{.Task collapse=true}
+
+{{< iframe
+  path = "/resources/numbas/Q13/index.html" width="90%" height="900px" >}}
 :::
