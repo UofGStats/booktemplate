@@ -48,6 +48,8 @@ This third sentence is fully visible.
 
 I don't imagine you would wish, but should you wish to hide some fundamental Quarto object like a code block and the resulting output you are recommended to use the built-in features like setting `echo: false` on the code block.
 
+:::
+
 You can use this `invis` extension to hide large blocks of content in the HTML, but for such elements they will likely appear in the PDF, since all we are doing is setting standard text as white, and code and plots are not standard text.
 
 {{< invis start block >}}
@@ -62,7 +64,4 @@ plot(cars)
 {{< invis end block >}}
 
 The code and output plot above are fully hidden in the HTML. Likely fully visible in the PDF.
-
-:::
-
 

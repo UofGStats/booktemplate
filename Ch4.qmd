@@ -3,7 +3,17 @@ filters:
   - stats-uog
 ---
 
-# Chapter 4 - Nicer boxes
+
+```{r python-setup, echo=FALSE, results='hide'}
+#| code-fold: false
+Sys.getenv("PATH")
+Sys.setenv(PATH = paste("F:\\miniconda3\\condabin", Sys.getenv("PATH"), sep=";"))
+#system("conda --version")
+library(reticulate)
+reticulate::use_condaenv(condaenv = "quarto", conda = "auto", required = TRUE)
+#py_config()
+```
+# Chapter 4 - Nicer boxes and Python
 
 This chapter shows off some nice coloured boxes. They come from the `custom-numbered-blocks` extension. First you need to install the extension `quarto add ute/custom-numbered-blocks`.
 
@@ -70,7 +80,7 @@ All of these blocks are *foldable*, meaning they can be opened and closed. The `
 | Definition| `deflike`   | <span class="colorbox" style="background-color:#ffdc36;"></span>`#ffdc36` | <span class="colorbox" style="background-color:#ffb948;"></span>`#ffb948` | Open / Closeable |
 | Video     | `videolike` | <span class="colorbox" style="background-color:#d18888;"></span>`#d18888` | <span class="colorbox" style="background-color:#660000;"></span>`#660000` | Open / Closeable |
 
-: This is the table's caption {#tbl-boxcols}
+: This is the table's caption {#tbl-boxcols tbl-colwidths="[15,20,25,20,20]"}
 
 These boxes also have dark-mode versions, see below. Tables like this can have captions, and be referenced @tbl-boxcols. They can also have styling added.
 
@@ -98,7 +108,7 @@ Here's some famous beetle data. The R code is folded (and thus hideable), the Py
 
 ### R
 
-```{r r-beetle-load, results = 'hide'}
+```{r r-beetle-load}
 #| code-fold: show
 beetles <- read.csv(url("http://www.stats.gla.ac.uk/~tereza/rp/beetles.csv"))
 beetles
@@ -106,10 +116,10 @@ beetles
 
 ### Python
 
-```{python py-beetle-load, results = 'hide', eval=F}
+```{python py-beetle-load, eval=TRUE}
 import pandas as pd
-# beetles = pd.read_csv("resources/data/beetles.csv")
-# beetles
+beetles = pd.read_csv("resources/data/beetles.csv")
+beetles
 ```
 
 ::::::
@@ -196,3 +206,71 @@ If we want we can wrap the `\ref{}` inside a hyperlink to get [Theorem \ref{rthm
 
 Each box has to define four colours. In the file mentioned above the light-mode border and background are set. For those using dark-mode you also need to define a dark mode pair. See [dark styles boxes stylesheet](../themes/dark-styles-boxes.scss).
 
+## More Python
+
+Rendering documents containing R and Python is based on the `reticulate` and `knitr` R packages.
+
+One way is to let quarto create you a python environment to install your packages into via `quarto install python`.
+
+For the manual approach you can use *virtual enviroments* or Anaconda/Conda like this:
+
+1. Create an anaconda environment for this project: (and install your libraries/packages)
+```
+conda create -n quarto python=3.13
+conda activate quarto
+conda install numpy matplotlib
+```
+
+2. Set your Python environment for this document near the top:
+
+```{r}
+#| label: python-setup-fake
+#| echo: true
+#| eval: false
+
+library(reticulate)
+reticulate::use_condaenv(condaenv = "quarto", conda = "auto", required = TRUE)
+
+#to check it's loaded
+#py_config() 
+```
+
+Do something, with separate tabs for R and Python:
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+#| label: fig-rnorm
+#| fig-cap: "A base R plot"
+#| fig-alt: "Alt text"
+
+x <- rnorm(50)
+plot(x)
+```
+
+## Python
+
+```{python eval=TRUE}
+#| label: fig-polar
+#| fig-cap: "A line plot on a polar axis"
+#| fig-alt: "Alt text"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(
+  subplot_kw = {'projection': 'polar'} 
+)
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+
+:::
+
+The output images from these pieces of code have their own labels namely `@fig-rnorm` and `@fig-polar` which reference as @fig-rnorm and @fig-polar.
