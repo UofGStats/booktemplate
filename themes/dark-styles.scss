@@ -111,5 +111,6 @@ details.code-fold > summary {
 
 code:not(pre > code) {
   background-color: mix(black,$university-blue,40%) !important;
+  color: $body-color !important;
 }
 
