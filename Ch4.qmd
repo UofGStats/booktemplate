@@ -6,8 +6,8 @@ filters:
 
 ```{r python-setup, echo=FALSE, results='hide'}
 #| code-fold: false
-Sys.getenv("PATH")
-Sys.setenv(PATH = paste("F:\\miniconda3\\condabin", Sys.getenv("PATH"), sep=";"))
+#Sys.getenv("PATH")
+#Sys.setenv(PATH = paste("F:\\miniconda3\\condabin", Sys.getenv("PATH"), sep=";"))
 #system("conda --version")
 library(reticulate)
 reticulate::use_condaenv(condaenv = "quarto", conda = "auto", required = TRUE)

@@ -7,7 +7,7 @@ filters:
 
 This chapter can even link back to other whole chapters @sec-binary-response. Or equations in other chapters @eq-AROC.
 
-## Section One
+## Handling videos
 
 One way to include videos is to use the Quarto syntax used to insert any figures, where you write
 

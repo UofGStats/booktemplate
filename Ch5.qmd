@@ -73,7 +73,9 @@ and it returns the value
 
 Another opportunity with HTML is to embed via an iframe to some external content.
 
-I have embedded some functions insider `_common.R` which setup how to do this via an R function. You need to first create your Numbas question, then preview it, and click *Download*. This provides a zip file, which you unzip and place the folder into `/resources/numbas/<your-chosen-name>`. Then in the code below you just point to the `index.html` for the question. Questions are of varying heights and widths too, so you can customize it in when you create the iframe.
+I have created an extension which makes including iframes easier.
+
+You need to first create your Numbas question, then preview it, and click *Download*. This provides a zip file, which you unzip and place the folder into `/resources/numbas/<your-chosen-name>`. Then in the code below you just point to the `index.html` for the question. Questions are of varying heights and widths too, so you can customize it in when you create the iframe.
 
 ### Plain version (no web version)
 
