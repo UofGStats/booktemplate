@@ -3,21 +3,25 @@ filters:
   - stats-uog
 ---
 
-
-```{r python-setup, echo=FALSE, results='hide'}
-#| code-fold: false
-#Sys.getenv("PATH")
-#Sys.setenv(PATH = paste("F:\\miniconda3\\condabin", Sys.getenv("PATH"), sep=";"))
-#system("conda --version")
+```{r python-setup-new-reticulate}
+#| include: false
+#| eval: true
 library(reticulate)
-reticulate::use_condaenv(condaenv = "quarto", conda = "auto", required = TRUE)
-#py_config()
+# New way to say which packages/libraries we want access to
+py_require(packages = c("pandas, matplotlib"))
+
+# This creates an ephemeral environment once per R session and loads libraries
+# Would be faster to manually create an environment, install libraries to it
+# then point to it with the use_python() or use_condaenv etc.. commands
+# however then would need to edit it if you work on different machines
+
 ```
+
 # Chapter 4 - Nicer boxes and Python
 
 This chapter shows off some nice coloured boxes. They come from the `custom-numbered-blocks` extension. First you need to install the extension `quarto add ute/custom-numbered-blocks`.
 
-This code has then been added to the `_quarto.yml` or `_metadata.yml` file (or at the top of this file) to load the coloured boxes.
+This code has then been added somewhere (`_quarto.yml` or `_metadata.yml` or at the top of this file) to load the coloured boxes. In reality it's link to a file called `_numbered-boxes.yml` from in `_quarto.yml`. It looks approximately like this, you define groups of like-numbered boxes, and then define specific classes (and their names later). They can have separate colour schemes too.
 
 ```
 filters:
@@ -212,9 +216,29 @@ Rendering documents containing R and Python is based on the `reticulate` and `kn
 
 One way is to let quarto create you a python environment to install your packages into via `quarto install python`.
 
+If you aleady have python installed then there's the hard way or the easy way.
+
+### The easy way
+
+You just run this:
+
+```{{r python-setup-new-reticulate}}
+#| include: false
+#| eval: true
+
+library(reticulate)
+
+# New way to say which packages/libraries we want access to
+py_require(packages = c("pandas, matplotlib"))
+```
+
+This creates an ephemeral environment once per R session and installs libraries for you, ready for them to be imported later. The **slight drawback** I see is that once per session (the first time you compile) your computer will take some time to go and install the libraries for you into it's ephemeral environment. The **big advantage** is it doesn't matter what machine you're on, you don't need to point your file to where to find python/anaconda/miniconda/envs. You merely need to know in advance which libraries will be used.
+
+### The harder manual way
+
 For the manual approach you can use *virtual enviroments* or Anaconda/Conda like this:
 
-1. Create an anaconda environment for this project: (and install your libraries/packages)
+1. Create an [ana]conda environment for this project like this: (and install your libraries/packages into it)
 ```
 conda create -n quarto python=3.13
 conda activate quarto
@@ -274,3 +298,4 @@ plt.show()
 :::
 
 The output images from these pieces of code have their own labels namely `@fig-rnorm` and `@fig-polar` which reference as @fig-rnorm and @fig-polar.
+
