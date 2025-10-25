@@ -7,14 +7,10 @@ filters:
 #| include: false
 #| eval: true
 library(reticulate)
-# New way to say which packages/libraries we want access to
-py_require(packages = c("pandas, matplotlib"))
-
-# This creates an ephemeral environment once per R session and loads libraries
-# Would be faster to manually create an environment, install libraries to it
-# then point to it with the use_python() or use_condaenv etc.. commands
-# however then would need to edit it if you work on different machines
-
+#These next two lines need to run ONCE on your machine
+#reticulate::virtualenv_create("r-quarto")
+#reticulate::py_install(c("pandas","seaborn","matplotlib","numpy"), envname = "r-quarto")
+reticulate::use_virtualenv("r-quarto", required = TRUE)
 ```
 
 # Chapter 4 - Nicer boxes and Python
@@ -296,6 +292,31 @@ plt.show()
 ```
 
 :::
+
+:::{.panel-tabset}
+
+## R
+
+```{r}
+x <- seq(-10,10, by = 0.1)
+y <- x ^ 3
+plot(x, y, type = "l")
+```
+
+## Python
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+xpoints = np.arange(-10, 10, 0.1)
+ypoints = np.power(xpoints, 3)
+
+plt.plot(xpoints, ypoints)
+plt.show()
+```
+:::
+
 
 The output images from these pieces of code have their own labels namely `@fig-rnorm` and `@fig-polar` which reference as @fig-rnorm and @fig-polar.
 
