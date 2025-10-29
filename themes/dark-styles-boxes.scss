@@ -39,6 +39,10 @@ $answer-title-bg-color: #660000;
 $weblink-border-color: #44595E;
 $weblink-title-bg-color: #274370;
 
+$key-border-color: #be4d00;
+$key-title-bg-color: #8b3700;
+
+
 .Example {
   @include numbered-box-dark-mode($example-border-color, $example-title-bg-color, $body-color);
 }
@@ -78,3 +82,8 @@ $weblink-title-bg-color: #274370;
 .Weblink {
   @include numbered-box-dark-mode($weblink-border-color, $weblink-title-bg-color, $body-color);
 }
+
+.Key {
+  @include numbered-box-dark-mode($key-border-color, $key-title-bg-color, $body-color);
+}
+

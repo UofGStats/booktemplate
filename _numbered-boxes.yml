@@ -35,6 +35,9 @@ custom-numbered-blocks:
       colors: [c7f3fc, 7ee3f8]
       boxstyle: foldbox.simple
       collapse: true
+    keylike:
+      colors: [ff7833, be4d00]
+      boxstyle: foldbox.simple
   classes:
     Example:
       group: examplelike
@@ -65,3 +68,7 @@ custom-numbered-blocks:
       group: videolike
     Supplement:
       group: supplike
+    Key:
+      group: keylike
+      label: "Key Idea"
+      collapse: false
