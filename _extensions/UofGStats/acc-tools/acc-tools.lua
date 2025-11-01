@@ -1,5 +1,5 @@
--- stats-uog.lua
--- Wrapper for stats-uog extension with YAML toggle support
+-- acc-tools.lua
+-- Wrapper for acc-tools extension with YAML toggle support
 
 local sub_filters = {
   ["global-toggle"] = "global-toggle.global-toggle",
@@ -14,22 +14,22 @@ local collected = {}  -- table of Pandoc functions
 function Meta(meta)
   -- Stop if PDF or LaTeX format
   if FORMAT:match("pdf") or FORMAT:match("latex") then
-    print("[stats-uog] PDF mode detected — skipping all subfilters.")
+    print("[acc-tools] PDF mode detected — skipping all subfilters.")
     return nil  -- do nothing; Pandoc will skip
   end
   
-  local su_meta = meta["stats-uog"] or {}
+  local su_meta = meta["acc-tools"] or {}
 
   -- Check su_meta is in the right format
   if type(su_meta) ~= "table" then
-    print("[stats-uog] ERROR: 'stats-uog' metadata must be list of pairs. Example format:")
-    print("[stats-uog] stats-uog:")
-    print("[stats-uog]   global-toggle: false")
-    print("[stats-uog]   code-blocks: false")
-    print("[stats-uog]   acc-styles: true")
+    print("[acc-tools] ERROR: 'acc-tools' metadata must be list of pairs. Example format:")
+    print("[acc-tools] acc-tools:")
+    print("[acc-tools]   global-toggle: false")
+    print("[acc-tools]   code-blocks: false")
+    print("[acc-tools]   acc-styles: true")
     
     -- Don't quit. Just resest to all on and continue.
-    print("[stats-uog] Applying default: all submodules enabled.")
+    print("[acc-tools] Applying default: all submodules enabled.")
     su_meta = {}
 
   end
@@ -44,7 +44,7 @@ function Meta(meta)
     if value == false then
       toggles[name] = false
     end
-    print("[stats-uog] Toggle for " .. name .. " = " .. tostring(toggles[name]))
+    print("[acc-tools] Toggle for " .. name .. " = " .. tostring(toggles[name]))
   end
 
   -- Require submodules and collect their Pandoc functions
@@ -52,7 +52,7 @@ function Meta(meta)
     if toggles[name] then
       local ok, mod = pcall(require, path)
       if ok then
-        print("[stats-uog] Loading module: " .. path)
+        print("[acc-tools] Loading module: " .. path)
         -- Handle double-bracket return: { { Pandoc = func } }
         if type(mod) == "table" then
           for _, entry in ipairs(mod) do
@@ -62,10 +62,10 @@ function Meta(meta)
           end
         end
       else
-        print("[stats-uog] Failed to load " .. path .. ": " .. tostring(mod))
+        print("[acc-tools] Failed to load " .. path .. ": " .. tostring(mod))
       end
     else
-      print("[stats-uog] Skipping module " .. path .. " (toggle = false)")
+      print("[acc-tools] Skipping module " .. path .. " (toggle = false)")
     end
   end
 end

@@ -1,6 +1,6 @@
 ---
 filters:
-    - stats-uog
+    - acc-tools
 ---
 
 # Week 2 -- Code demonstrations {#sec-code-demo}
@@ -11,7 +11,7 @@ Some equations, again. Notice this chapter begins with:
 ```
 ---
 filters:
-    - stats-uog
+    - acc-tools
 ---
 ```
 This loads the bonus accessibility features extension I have made.
