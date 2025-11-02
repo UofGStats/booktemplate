@@ -3,6 +3,12 @@ project:
   resources: ["resources"] # List files/folders here which need copying to live version, but which aren't explicitly references (e.g. numbas folders)
   output-dir: _preview
 
+### YOU WILL WANT TO DEFINE THE course_title ON THE NEXT LINE ###
+course_title: "Test Course"
+metadata-files: 
+  - _numbered-boxes.yml # Definitions for Ute Hahn's coloured boxes extension
+                        # the contents can be pasted here if desired instead
+
 knitr: true
 
 book:
@@ -32,53 +38,50 @@ book:
   sidebar:
     style: "docked"
     search: true
-    header: "_sidebar-header.html"
-comments:
-  hypothesis: true
-      
+    header: "_sidebar-header.html" # Custom HTML for logo and title, subtitle etc..
 
+## This section (if uncommented) could enable some HTML annotation features
+#comments: # Additional features of HTML annotating
+  #hypothesis: true # HTML commentary extension -- you likely don't want this
+      
 bibliography: references.bib
 reference-location: margin
 
-course_title: "Test Course"
-metadata-files: 
-  - _numbered-boxes.yml # Definitions for Ute Hahn's coloured boxes extension
-                        # the contents can be pasted here if desired instead
-
 # My filters
 filters:
-  - latex-environment # This saves having to type data-latex="" all the time
+  - latex-environment # This saves having to type data-latex="" all the time (and enables 'term' styling)
   - fontawesome # This loads a large bank of nice icons
-  - custom-numbered-blocks
-  - invis # My invisibility blocks
-  - iframe # My iframe embedder (for Numbas)
-environments: [term] # See latex-environment above
-commands: [term] # Provides custom inline environments e.g. []{.term} and \term{}
-use-rsvg-convert: true
-number-depth: 3
+  - custom-numbered-blocks # These are the nice coloured boxes
+  - invis # This allows hidden text
+  - iframe # This allows embedding iframe, e.g. Numbas questions
+  
+environments: [term] # Needs latex-environment above (and see below)
+commands: [term] # Allows consistent highlighting of key terms
+use-rsvg-convert: true # Auto-convert images into svg format
+number-depth: 3 # How deep to number things?
 format:
-  html:
-    defaults: [resources/latex/global-maths-definitions.yaml] # Calls relative to root folder
+  html: # Settings for HTML output
+    defaults: [resources/latex/global-maths-definitions.yaml] # Calls relative to root folder. Latex macros (see below)
     default-image-extension: svg
     highlight-style: a11y
-    mainfont: "Atkinson Hyperlegible"
+    mainfont: "Atkinson Hyperlegible" # Primary font used
     code-overflow: wrap
-    toc: true
-    toc-location: right
-    respect-user-color-scheme: true
+    toc: true # Table of contents true/false
+    toc-location: right # Location of table of contents
+    respect-user-color-scheme: true # Permit auto-dark mode if desired set by user
     theme:
       light: [themes/load-light.scss, cosmo]
-      dark: [superhero, themes/load-dark.scss]
-    #include-after-body: disable-tippy-tab.js
-  pdf:
+      dark: [superhero, themes/load-dark.scss] # Remove this row to totally remove
+    #include-after-body: disable-tippy-tab.js # Script to fully disable hover to show HTML links
+  pdf: # Settings for PDF output
     documentclass: scrreport
     default-image-extension: png
-    keep-tex: true
+    keep-tex: true # Useful to be set to true for debugging the tex file
     papersize: a4
-    include-in-header: ["include-in-header.tex"]
+    include-in-header: ["include-in-header.tex"] # Latex macros and more. Macros need duplicating here (see above)
     code-block-overflow: wrap
-    geometry:
-      - left=10mm
+    geometry: # Customize the margins of the PDF here.
+      #- left=10mm # Narrow left margin
       - marginparwidth=60mm
-      - textwidth=130mm
+      #- textwidth=130mm # Super-wide right margin for annotations
       - marginparsep=5mm
