@@ -154,8 +154,8 @@ The name `.Example` refers to the name `Example` defined in the above documents.
 The template separates styling based on purpose and mode:
 
 - **UofG colours**: `themes/_colours.scss`  
-- **Light-mode styles**: `themes/light-styles.css`  
-- **Dark-mode styles**: `themes/dark-styles.css`  
+- **Light-mode styles**: `themes/light-styles.scss`  
+- **Dark-mode styles**: `themes/dark-styles.scss`  
 - **Global styles (both modes)**: `themes/global-styles.scss`  
 
 Use these files to customize HTML typography, spacing, colours, and other visual elements while keeping light and dark modes separate.
