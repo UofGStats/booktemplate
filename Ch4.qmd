@@ -210,57 +210,46 @@ Each box has to define four colours. In the file mentioned above the light-mode 
 
 Rendering documents containing R and Python is based on the `reticulate` and `knitr` R packages.
 
-One way is to let quarto create you a python environment to install your packages into via `quarto install python`.
+One way is to let Quarto manage a Python environment for you via `quarto install python`, but if you already have Python installed, the recommended approach now is to use a **persistent virtual environment**.
 
-If you aleady have python installed then there's the hard way or the easy way.
+### Setting up a persistent Python environment
 
-### The easy way
-
-You just run this:
+Look at the top of this file and you'll find a chunk like this
 
 ```{{r python-setup-new-reticulate}}
 #| include: false
 #| eval: true
-
 library(reticulate)
 
-# New way to say which packages/libraries we want access to
-py_require(packages = c("pandas, matplotlib"))
+# These next two lines need to run ONCE on your machine to create the environment
+# reticulate::virtualenv_create("r-quarto")
+# reticulate::py_install(c("pandas","seaborn","matplotlib","numpy"), envname = "r-quarto")
+
+# Use the virtual environment in this document
+reticulate::use_virtualenv("r-quarto", required = TRUE)
 ```
 
-This creates an ephemeral environment once per R session and installs libraries for you, ready for them to be imported later. The **slight drawback** I see is that once per session (the first time you compile) your computer will take some time to go and install the libraries for you into it's ephemeral environment. The **big advantage** is it doesn't matter what machine you're on, you don't need to point your file to where to find python/anaconda/miniconda/envs. You merely need to know in advance which libraries will be used.
+* **First time only:** Uncomment the `virtualenv_create` and `py_install` lines to set up the environment.
+* **After setup:** Only the `use_virtualenv` line is needed.
 
-### The harder manual way
+The advantage of this approach is that libraries are installed once and persist across sessions, so you don’t incur installation overhead every time you render the document.
 
-For the manual approach you can use *virtual enviroments* or Anaconda/Conda like this:
+If while developing your notes you realize you need to load another library, then re-run the `py_install` line to install this library into your `r-quarto` environment, e.g. by running these lines in the console:
 
-1. Create an [ana]conda environment for this project like this: (and install your libraries/packages into it)
-```
-conda create -n quarto python=3.13
-conda activate quarto
-conda install numpy matplotlib
-```
-
-2. Set your Python environment for this document near the top:
-
-```{r}
-#| label: python-setup-fake
-#| echo: true
-#| eval: false
-
+```markdown
 library(reticulate)
-reticulate::use_condaenv(condaenv = "quarto", conda = "auto", required = TRUE)
-
-#to check it's loaded
-#py_config() 
+reticulate::py_install(c("insert-new-library-here"), envname = "r-quarto")
 ```
+
+### Using Python in your Quarto document
+
+Once the environment is set, you can run Python chunks as usual:
 
 Do something, with separate tabs for R and Python:
 
-::: {.panel-tabset}
+:::{.panel-tabset} 
 
 ## R
-
 ```{r}
 #| label: fig-rnorm
 #| fig-cap: "A base R plot"
@@ -298,14 +287,17 @@ plt.show()
 ## R
 
 ```{r}
+#| label: r-cubic-plot
+#| 
 x <- seq(-10,10, by = 0.1)
 y <- x ^ 3
 plot(x, y, type = "l")
 ```
 
 ## Python
-
 ```{python}
+#| label: py-cubic-plot
+#| 
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -315,8 +307,8 @@ ypoints = np.power(xpoints, 3)
 plt.plot(xpoints, ypoints)
 plt.show()
 ```
-:::
 
+:::
 
 The output images from these pieces of code have their own labels namely `@fig-rnorm` and `@fig-polar` which reference as @fig-rnorm and @fig-polar.
 
