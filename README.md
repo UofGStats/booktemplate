@@ -102,7 +102,7 @@ You **will want** to edit the `_quarto.yml` section describing the `chapters:` a
 
 ## Adding resources
 
-All files that chapters need should be placed in the `resources/` folder at the root of your project. To help manage a large number of resources, you can create subfolders inside `resources/`. For example, you could group them by type (e.g., `images`, `data`, `figures`) or by chapter (e.g., `week1`, `week2`). How you organize them is up to you.
+It's highly recommended that all files that chapters need be placed in the `resources/` folder at the root of your project. To help manage a large number of resources, you can create subfolders inside `resources/`. For example, you could group them by type (e.g., `images`, `data`, `figures`) or by chapter (e.g., `week1`, `week2`). How you organize them is up to you.
 
 Reference these files directly from your `.qmd` files remembering they live inside `resources/`, for example:
 
