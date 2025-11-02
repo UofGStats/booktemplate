@@ -74,7 +74,7 @@ format:
       dark: [superhero, themes/load-dark.scss] # Remove this row to totally remove
     #include-after-body: disable-tippy-tab.js # Script to fully disable hover to show HTML links
   pdf: # Settings for PDF output
-    documentclass: scrreport
+    documentclass: scrreprt
     default-image-extension: png
     keep-tex: true # Useful to be set to true for debugging the tex file
     papersize: a4
