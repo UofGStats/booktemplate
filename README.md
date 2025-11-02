@@ -96,6 +96,25 @@ You can give them descriptive names instead like `Introduction.qmd` and `Regress
 
 You **will want** to edit the `_quarto.yml` section describing the `chapters:` anyway.
 
+### Customized features
+
+Although all chapters are rendered into a single book or website, each chapter can have custom options. For example, you may wish to use the `UofGStats/acc-tools` global code toggle button only in chapters which use both R and Python. 
+
+At the top of the chapter file, add:
+```markdown
+---
+filters:
+  - acc-tools
+  
+acc-tools:
+  global-toggle: false
+---
+```
+
+This disables the global toggle button for this chapter while still loading the other `acc-tools` features.
+
+Full documentation for `acc-tools` is available at [https://github.com/UofGStats/acc-tools](https://github.com/UofGStats/acc-tools)
+
 ---
 
 ## Adding resources
