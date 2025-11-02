@@ -10,9 +10,7 @@ This document explains how to install, set up, and customize the UofGStats book 
   - [Option 1: Clone the repository](#option-1-clone-the-repository)  
   - [Option 2: Use the Quarto template](#option-2-use-the-quarto-template)  
 - [Setting up your chapters](#setting-up-your-chapters)  
-- [Adding resources](#adding-resources)  
-  - [Global resources](#global-resources)  
-  - [Chapter-specific resources](#chapter-specific-resources)  
+- [Adding resources](#adding-resources)
 - [Customizing colours and boxes](#customizing-colours-and-boxes)  
   - [1. Default colours and box types](#1-default-colours-and-box-types)  
   - [2. Dark-mode colours](#2-dark-mode-colours)  
@@ -116,7 +114,9 @@ This approach keeps all resources centralized while allowing flexible organizati
 
 ## Customizing colours and boxes
 
-The template provides colored “numbered boxes” that can be customized for light and dark modes.
+The template provides coloured “numbered boxes” that can be customized for light and dark modes. These are from an extension created by Ute Hahn:
+
+Full documentation: [custom-numbered-blocks repository](https://github.com/ute/custom-numbered-blocks)
 
 ### 1. Default colours and box types
 
@@ -126,11 +126,24 @@ Edit `_numbered-boxes.yml` to define:
 - Names of box types  
 - Which box types are available  
 
-Documentation: [custom-numbered-blocks repository](https://github.com/ute/custom-numbered-blocks)
+I've added a fairly long list of sample box types and colours but you're welcome to change them, or just not use them.
 
 ### 2. Dark-mode colours
 
 Edit `themes/dark-styles-boxes.scss`. Each box type needs an `@include` call, using colours defined at the top of the file.
+
+*It's possible a future version of this extension will do away with the need to control light and dark mode colours in different places. Indeed if you fully disable the dark mode then you only need one.*
+
+### Usage
+
+These coloured boxes are created in your notes with standard Quarto syntax. You create a box with syntax like this:
+
+```markdown
+:::{.Example}
+Contents goes here
+:::
+```
+The name `.Example` refers to the name `Example` defined in the above documents. You can also add a custom title to the box as usual with a `##` line at the stop. Full documentation for use of these boxes is linked above.
 
 ---
 
