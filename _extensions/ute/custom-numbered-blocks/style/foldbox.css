@@ -104,13 +104,4 @@ details.closebutton[open] > summary:hover::after {
   box-shadow: var(--thickshadow); 
 }
 
-/* Hide the default triangle/arrow for details with data-no-arrow */
-details[data-no-arrow] > summary::-webkit-details-marker {
-  display: none; /* Chrome, Safari, Edge */
-}
-details[data-no-arrow] > summary::marker {
-  content: none; /* Firefox */
-}
-
-
 

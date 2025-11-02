@@ -205,6 +205,8 @@ You can reference the blocks defined above using their labels:
 
 If we want we can wrap the `\ref{}` inside a hyperlink to get [Theorem \ref{rthmpythag}](#rthmpythag), [Corollary \ref{Rcor-pythag}](#Rcor-pythag), etc...
 
+*Update*: The `custom-numbered-blocks` extension now offers `\longref{}` as a way to make the hyperlink include the word of the type of object, like `\longref{rthmpythag}` now rendering as \longref{rthmpythag}.
+
 ## Customization
 
 Each box has to define four colours. In the file mentioned above the light-mode border and background are set. For those using dark-mode you also need to define a dark mode pair. See [dark styles boxes stylesheet](../themes/dark-styles-boxes.scss).

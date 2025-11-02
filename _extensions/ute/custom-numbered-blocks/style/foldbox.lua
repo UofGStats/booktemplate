@@ -19,7 +19,6 @@ blockStart = function (tt, fmt)
   if #tt.title > 0 then tt.typlabelTag = tt.typlabelTag..": " end
   if fmt =="html" then
     if tt.collapse =="false" then Open=" open" end
-    if tt.collapse =="never" then Open=" open data-no-arrow" end
     if tt.boxstyle =="foldbox.simple" 
       then 
         bxstyle=" fbx-simplebox fbx-default" 
