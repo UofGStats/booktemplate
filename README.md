@@ -94,7 +94,7 @@ Each `.qmd` file should begin with a level-1 heading (a line starting with `#`) 
 
 All chapters will be rendered together into a single HTML or PDF output.
 
-You can give them descriptive names instead like Introduction.qmd and Regression.qmd, but then you should ensure you specify their rendering order in the `_quarto.yml` file.
+You can give them descriptive names instead like `Introduction.qmd` and `Regression.qmd`, but then you should ensure you specify their rendering order in the `_quarto.yml` file.
 
 You **will want** to edit the `_quarto.yml` section describing the `chapters:` anyway.
 
