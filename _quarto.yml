@@ -54,6 +54,7 @@ filters:
   - custom-numbered-blocks # These are the nice coloured boxes
   - invis # This allows hidden text
   - iframe # This allows embedding iframe, e.g. Numbas questions
+  #- acc-tools # Here you could globally load the code switching and accessibility features
   
 environments: [term] # Needs latex-environment above (and see below)
 commands: [term] # Allows consistent highlighting of key terms
