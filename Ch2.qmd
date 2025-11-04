@@ -14,10 +14,7 @@ filters:
     - acc-tools
 ---
 ```
-This loads the bonus accessibility features extension I have made.
-
-**LET'S MAKE THIS CHAPTER ALL ABOUT SHOWING OFF THE ACCESSIBILITY STUFF**
-
+This loads the bonus accessibility features extension. There is a global code toggle button bottom left, and the R and P keyboard buttons will switch **all** code tabs simultaneously to the chosen language.
 
 $$\diff[3]{y}{x}$$
 

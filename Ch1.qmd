@@ -38,7 +38,7 @@ Let
 
 $$D_3(y) \equiv \diff[3]{y}{x}$$
 
-That was just an equation inside `$$` and `$$` tags. For labelled equations you need to do the slightly unusual LaTeX behaviour of using `$$` and then `\\begin{aligned}` or similar inside. So unlike in LaTeX you always need `$$` to start a math environment (because the `$$` tells the browser to enable math mode). Yes! No. Maybe. Not.
+That was just an equation inside `$$` and `$$` tags. For labelled equations you need to do the slightly unusual LaTeX behaviour of using `$$` and then `\begin{aligned}` or similar inside. So unlike in LaTeX you always need `$$` to start a math environment (because the `$$` tells the browser to enable math mode). Yes! No. Maybe. Not.
 
 $$
 \begin{aligned}
