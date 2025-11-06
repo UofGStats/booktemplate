@@ -152,7 +152,7 @@ This figure caption is written in a dark font color. The Quarto default is often
 3+34
 ```
 
-## R
+### R
 
 ```{r simple1b}
 34+3
@@ -162,13 +162,13 @@ This figure caption is written in a dark font color. The Quarto default is often
 
 :::{.panel-tabset}
 
-## Python
+### Python
 
 ```{python simple2a}
 5+4
 ```
 
-## R
+### R
 
 ```{r simple2b}
 4+5

@@ -258,7 +258,7 @@ This will demonstrate the R/Python switcher again. Notice this page doesn't cont
 
 :::{.panel-tabset} 
 
-## R
+### R
 ```{r}
 #| label: fig-rnorm
 #| fig-cap: "A base R plot"
@@ -268,7 +268,7 @@ x <- rnorm(50)
 plot(x)
 ```
 
-## Python
+### Python
 
 ```{python eval=TRUE}
 #| label: fig-polar
@@ -293,7 +293,7 @@ plt.show()
 
 :::{.panel-tabset}
 
-## R
+### R
 
 ```{r}
 #| label: fig-r-cubic-plot
@@ -305,7 +305,7 @@ y <- x ^ 3
 plot(x, y, type = "l")
 ```
 
-## Python
+### Python
 ```{python}
 #| label: fig-py-cubic-plot
 #| fig-cap: $f(x)=x^3$ between $-10$ and $+10$
