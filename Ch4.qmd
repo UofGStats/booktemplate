@@ -16,11 +16,13 @@ library(reticulate)
 reticulate::use_virtualenv("r-quarto", required = TRUE)
 ```
 
-# Chapter 4 - Nicer boxes and Python
+# Chapter 4 - Nicer boxes and Python {#sec-niceboxes}
 
 This chapter shows off some nice coloured boxes. They come from the `custom-numbered-blocks` extension. First you need to install the extension `quarto add ute/custom-numbered-blocks`.
 
-This code has then been added somewhere (`_quarto.yml` or `_metadata.yml` or at the top of this file) to load the coloured boxes. In reality it's link to a file called `_numbered-boxes.yml` from in `_quarto.yml`. It looks approximately like this, you define groups of like-numbered boxes, and then define specific classes (and their names later). They can have separate colour schemes too.
+The following colour definitions need to be added somewhere (e.g. `_quarto.yml` or `_metadata.yml` or at the top of this `.qmd` file) to load the coloured boxes. In this template I have added a link to a file called `_numbered-boxes.yml` from inside `_quarto.yml`. In this way you just need to look insider `_numbered-boxes.yml` to edit the settings.
+
+It looks approximately like this, you define groups of like-numbered boxes, and then define specific classes (and their names later). They can have separate colour schemes too.
 
 ```
 filters:
@@ -61,7 +63,7 @@ We’ve defined several custom-numbered block types using the `custom-numbered-b
 
 Each block belongs to a **group** that determines its shared numbering. 
 
-All of these blocks are *foldable*, meaning they can be opened and closed. The `collapse` setting determines the starting state.
+All of these blocks are *foldable*, meaning they can be opened and closed. The `collapse` setting determines the starting state. Most boxes have been set to be open (`collapse: false`) at the group level, but this can be overridden at both lower levels. e.g. Corollary shares numbering with all the theorem-like boxes, which are all open by default. Corollaries could be all set to closed by default, or even on a case by case basis in the code.
 
 <style>
 .colorbox {
@@ -85,12 +87,12 @@ All of these blocks are *foldable*, meaning they can be opened and closed. The `
 
 : This is the table's caption {#tbl-boxcols tbl-colwidths="[15,20,25,20,20]"}
 
-These boxes also have dark-mode versions, see below. Tables like this can have captions, and be referenced @tbl-boxcols. They can also have styling added.
+These boxes also have dark-mode versions, see below. Notice this table had a caption, and it can be referenced with normal Quarto syntax: @tbl-boxcols. They can also have styling added.
 
 > Note:
 > The two colors defined for each group represent the **left border** and the **title background**.
 
-Here's an alternative to treating videos are float/figures, put them in their own box and use the title of the box to describe the video.
+Here's an alternative to treating videos as float/figures, just stick them directly onto the page immediately (not as a floating object) but wrap them in a coloured box and use the title of the box to describe the video.
 
 :::{.Video #vidFirst}
 ## Binomial response models applied to beetle mortality data (9m59)  
@@ -102,7 +104,7 @@ There is some text here before the video
 >}}
 :::
 
-:::{.example}
+:::{.Example}
 ### Beetle mortality data
 
 Here's some famous beetle data. The R code is folded (and thus hideable), the Python code isn't folded so cannot be folded away.
@@ -135,24 +137,26 @@ beetles
 Some content
 :::
 
-:::{.Lemma #bestlemma}
+:::{.Corollary #bestcor}
 ## Super
 
-This is a fantastic Lemma.
+This is a fantastic Corollary.
 :::
 
-There are no Lemma's better than Lemma \ref{bestlemma}. Note that referencing of these coloured boxes works like LaTeX's `\ref{}` command, thus it just renders the number, and you have to write the object name in front. This is in contrast to the `@lem-name` Quarto notation.
+There are no Corollary's better than Corollary \ref{bestcor}. Note that referencing of these coloured boxes works like LaTeX's `\ref{}` command, thus it just renders the number, and you have to write the object name in front. This is in contrast to the `@cor-name` Quarto notation. 
+
+Full documentation on these coloured boxes is available at [https://github.com/ute/custom-numbered-blocks](https://github.com/ute/custom-numbered-blocks). Including the new `\longref{}` syntax allowing the object name to be included in the reference. Like this \longref{bestcor}.
 
 The other way to embed a video is inside a fenced div and treat it like a figure, as we saw in other chapters.
 
-Our video in this chapter was embedded inside a custom numbered block and it was called [Video \ref{vidFirst}](#vidFirst).
+Our video in this chapter was embedded inside a custom numbered block and it was called [Video \ref{vidFirst}](#vidFirst), in a moment we'll include another video. It will be called \longref{Rvid-yt}.
 
 ## Demonstration of Custom Numbered Blocks
 
 Below are examples of the custom-numbered blocks.  
 Each block is foldable (open or closed by default) and has its own colour scheme and group style as defined in your YAML configuration.
 
-Notice Theorem, Corollary and Lemma has been defined to share counter. Unlike Video and Definition have their own types (*deflike* and *vidlike*).
+Notice Theorem, Corollary and Lemma has been defined to share a counter. Unlike Video and Definition which are different types (*vidlike* and *deflike*).
 
 ::: {.Theorem #rthmpythag}
 ## Pythagoras' Theorem
@@ -209,7 +213,7 @@ If we want we can wrap the `\ref{}` inside a hyperlink to get [Theorem \ref{rthm
 
 ## Customization
 
-Each box has to define four colours. In the file mentioned above the light-mode border and background are set. For those using dark-mode you also need to define a dark mode pair. See [dark styles boxes stylesheet](../themes/dark-styles-boxes.scss).
+Each box's definition uses two colours. In the file mentioned above the light-mode border and background are set. For those using dark-mode you also need to define a dark mode pair (so you'll need four total colours). See [dark styles boxes stylesheet](../themes/dark-styles-boxes.scss) for how to define them as it's not available as a default setting.
 
 ## More Python
 
@@ -219,7 +223,7 @@ One way is to let Quarto manage a Python environment for you via `quarto install
 
 ### Setting up a persistent Python environment
 
-Look at the top of this file and you'll find a chunk like this
+Look at the top of each file and you'll find a chunk like this
 
 ```{{r python-setup-new-reticulate}}
 #| include: false
@@ -250,7 +254,7 @@ reticulate::py_install(c("insert-new-library-here"), envname = "r-quarto")
 
 Once the environment is set, you can run Python chunks as usual:
 
-Do something, with separate tabs for R and Python:
+This will demonstrate the R/Python switcher again. Notice this page doesn't contain the global toggle button in the bottom left as it was disabled at the top of the `.qmd`, should you wish to disable it.
 
 :::{.panel-tabset} 
 

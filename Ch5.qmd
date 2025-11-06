@@ -10,7 +10,7 @@ format:
 
 ## R package: `webexercises`
 
-Some people are using external R packages like `webexercises`, they will just work out of the box. You load it like this, I've added an extra function to attach accessibility aria labels to the entry boxes later.
+Some people are using external R packages like `webexercises`, they will just work out of the box. You load them as usual. I've added an extra function to attach accessibility aria labels to the entry boxes later.
 
 ```{r}
 #| echo: fenced
@@ -93,7 +93,7 @@ You need to first create your Numbas question, then preview it, and click *Downl
 
 ### Version with a hyperlink in the PDF
 
-If you want the PDF version to contain an actual hyperlink then you need to get a link to a website version of your question, like this example below. You could try and always use this link rather than the local download below, but the you are dependent on the external website.
+If you want the PDF version to contain an actual hyperlink then you need to get a link to a website version of your question, like this example below. You could try and always use this link rather than download approach described above, but then you are dependent on the external website being live at all times.
 
 ```
 {{{< iframe path = "/resources/numbas/Q13/index.html",

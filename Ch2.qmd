@@ -14,66 +14,40 @@ filters:
     - acc-tools
 ---
 ```
+
 This loads the bonus accessibility features extension. There is a global code toggle button bottom left, and the R and P keyboard buttons will switch **all** code tabs simultaneously to the chosen language.
 
 $$\diff[3]{y}{x}$$
 
 $$\int_0^{\infty} x^2 \dx$$
 
-This equation is the same as @eq-AROC from Chapter 1.
+This equation is the same as @eq-AROC from Chapter 1. Since we're in the book template, and all files are compiled simultaneously into one output we are allowed to link between chapters. This is the fundamental difference between the booktemplate and the weektemplate.
 
 ## Features
 
 - You'll first note in the bottom left is a global toggle button set. You can change all code blocks to R or to Python, by clicking; or by pressing `R` or `P` on the keyboard.
+- There tabs labelled R and Python have been moved to the right, and when selected (for example by pressing tab) are much more clearly selected.
+- Also the copy-code button is always visible.
 
-## Binomial response
+## New Section Title
 
-We will begin with models for binomial responses and we will look at exploratory plots of the data, different choices of link function and hypothesis tests about terms in the model. Finally we will examine measures of goodness of fit of the model. Let's begin with an example.
-
-```{r r-setup,echo=FALSE, include=FALSE, fig.height=4, fig.align='center'}
-knitr::opts_chunk$set(comment=NA, warning = FALSE, message = FALSE)
-library(ggplot2)
-library(knitr)
-library(dplyr)
-library(ROCR)
-library(sjPlot)
-set_theme(base = theme_grey(), theme.font = NULL, title.color = "black",
-title.size = 1.2, title.align = "left", title.vjust = NULL,
-geom.outline.color = NULL, geom.outline.size = 0,
-geom.boxoutline.size = 0.5, geom.boxoutline.color = "black",
-geom.alpha = 1, geom.linetype = 1, geom.errorbar.size = 0.7,
-geom.errorbar.linetype = 1, geom.label.color = NULL,
-geom.label.size = 4, geom.label.alpha = 1, geom.label.angle = 0,
-axis.title.color = "grey30", axis.title.size = 1.1,
-axis.title.x.vjust = NULL, axis.title.y.vjust = NULL, axis.angle.x = 0,
-axis.angle.y = 0, axis.angle = NULL, axis.textcolor.x = "grey30",
-axis.textcolor.y = "grey30", axis.textcolor = NULL,
-axis.linecolor.x = NULL, axis.linecolor.y = NULL, axis.linecolor = NULL,
-axis.line.size = 0.5, axis.textsize.x = 1, axis.textsize.y = 1,
-axis.textsize = NULL, axis.tickslen = NULL, axis.tickscol = NULL,
-axis.ticksmar = NULL, axis.ticksize.x = NULL, axis.ticksize.y = NULL,
-panel.backcol = NULL, panel.bordercol =NULL, panel.col = NULL,
-panel.major.gridcol = NULL, panel.minor.gridcol = NULL,
-panel.gridcol = NULL, panel.gridcol.x = NULL, panel.gridcol.y = NULL,
-panel.major.linetype = 1, panel.minor.linetype = 1, plot.backcol = NULL,
-plot.bordercol = NULL, plot.col = NULL, plot.margins = NULL,
-legend.pos = "right", legend.just = NULL, legend.inside = FALSE,
-legend.size = 1, legend.color = "black", legend.title.size = 1,
-legend.title.color = "black", legend.title.face = "bold",
-legend.backgroundcol = "white", legend.bordercol = "white",
-legend.item.size = NULL, legend.item.backcol = "grey90",
-legend.item.bordercol = "white")
-library(gridExtra)
-```
+Some more placeholder text here. Even in the book template every `.qmd` that wishes to use python needs to load it via `reticulate`. This is in the template:
 
 <!-- Setup python via conda and a predefined quarto environment -->
-```{r retic-setup, echo=F}
-#| code-fold: false
+```{r}
+#| label: python-setup
+#| echo: fenced
 library(reticulate)
-#reticulate::use_condaenv(condaenv = "quarto", conda = "auto", required = TRUE)
+#These next two lines need to run ONCE on your machine
+#reticulate::virtualenv_create("r-quarto")
+#reticulate::py_install(c("pandas","seaborn","matplotlib","numpy"), envname = "r-quarto")
+reticulate::use_virtualenv("r-quarto", required = TRUE)
 ```
 
-```{python py-imports, echo=F, eval=F}
+```{python}
+#| label:  py-imports
+#| echo: false
+#| eval: true # Note we are not evaluating, we already loaded in earlier qmd
 # Standard plot settings
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -85,6 +59,7 @@ import statsmodels.formula.api as smf
 # fig, ax = plt.subplots(figsize=(8, 5))
 ```
 
+Another standard callout box.
 
 :::{.callout-tip}
 ### Beetle mortality
@@ -99,46 +74,24 @@ Data for this example consists of the number of beetles dead (*killed*) after fi
 
 ### R
 
-```{r, results = 'hide'}
-#| code-fold: show
+The code in the R example is folded by default. Click on `Code` to reveal it.
+
+```{r}
+#| label: r-beetles-load
+#| code-fold: true
 beetles <- read.csv(url("http://www.stats.gla.ac.uk/~tereza/rp/beetles.csv"))
 beetles
 ```
 
 ### Python
 
-```{python py-beetle-load, results = 'hide', eval=F}
+```{python}
+#| label: py-beetles-load
 import pandas as pd
-# beetles = pd.read_csv("resources/data/beetles.csv")
-# beetles
+beetles = pd.read_csv("resources/data/beetles.csv")
+beetles
 ```
 
 ::::::
 
 :::
-
-:::{.callout-tip}
-## Conventional tip callout
-
-Some content
-:::
-
-:::{.callout-warning}
-## Conventional warning callout
-
-Some content
-:::
-
-:::{.callout-caution}
-## Conventional caution callout
-
-Some content
-:::
-
-:::{.callout-note}
-## Conventional note callout
-
-Some content
-:::
-
-

@@ -2,7 +2,7 @@
 
 ## Invisible text
 
-I have a Quarto extension [Invisible text extension](https://github.com/david-hodge/invis) to make hiding text easy. Mostly for us in gapped notes, or perhaps handouts.
+I have a Quarto extension [Invisible text extension](https://github.com/david-hodge/invis) to make hiding text easy. Mostly for use in gapped notes, or perhaps handouts.
 
 It implemented by simply setting text to fully transparent (and not selectable). Screenreaders **will** be able to see it, and they will also get informative notifications about the visibly hidden text. In LaTeX/PDF it is rendered as white text.
 
@@ -34,6 +34,8 @@ To hide more complex elements, use the `block` extra paramater.
 `{{{< invis end block >}}}`
 : This ends invisibility for a large element
 
+There are limitations for complex multiple blocks (see below).
+
 ### Examples
 
 This first sentence is fully visible.
@@ -46,11 +48,11 @@ This third sentence is fully visible.
 
 :::{.callout-warning}
 
-I don't imagine you would wish, but should you wish to hide some fundamental Quarto object like a code block and the resulting output you are recommended to use the built-in features like setting `echo: false` on the code block.
+I don't imagine you would wish, but should you wish to hide some fundamental Quarto object like a code block and the resulting output you are recommended to use the built-in features like setting `echo: false` on the code block, or read about *Conditional Formatting* in Quarto.
 
 :::
 
-You can use this `invis` extension to hide large blocks of content in the HTML, but for such elements they will likely appear in the PDF, since all we are doing is setting standard text as white, and code and plots are not standard text.
+You can use this `invis` extension to hide large blocks of content in the HTML, but for such elements they will likely appear in the PDF, since all we are doing in the PDF is setting standard text as white, and code and plots are not standard text.
 
 {{< invis start block >}}
 
@@ -63,5 +65,5 @@ plot(cars)
 
 {{< invis end block >}}
 
-The code and output plot above are fully hidden in the HTML. Likely fully visible in the PDF.
+The code and output plot above are fully hidden in the HTML. Likely fully visible in the PDF. If you already have a favourite way of hiding in LaTeX this is likely usable, but too complex for this guide.
 

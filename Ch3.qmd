@@ -5,11 +5,42 @@ filters:
 
 # Links chapter {#sec-links}
 
-This chapter can even link back to other whole chapters @sec-binary-response. Or equations in other chapters @eq-AROC.
+This chapter can even link back to other whole chapters @sec-binary-response. Or equations in other chapters @eq-AROC. This is only true for the book template.
+
+## Equations {#sec-equations}
+
+There is good Quarto documentation on how to crossref things [Quarto Cross References](https://quarto.org/docs/authoring/cross-references.html).
+
+The key thing to note is that if you plan to reference a standard object like a heading/section, the internal label name is restricted to begin with a particular three-letter prefix (except equations which get just the two letters `eq`). Plus Quarto recommends against using underscores in labels, hyphens are great.
+
+New prefixes can be created, as this template does below to create new figures for videos called `vid`. Various default ones already exist like Theorems, Lemmas etc.. this template will demo the `numbered-custom-boxes` in @sec-niceboxes as an alternative. This alternative gives fine-grained numbering control, so you'll need to avoid Quarto's numbering. So if you do follow this recommendation then you must avoid using standard Quarto names like `#thm-fermat` because Quarto will be confused about which method you wish. So in the examples presented in @sec-niceboxes I have just started all references with `#r` to avoid overlap, e.g. `#rthm-fermat`.
+
+Here's an equation:
+$$
+x^2 + y^2 = z^2
+$$ {#eq-squares}
+This equation was created using Quarto labelling syntax, i.e. like this
+
+```
+$$
+x^2 + y^2 = z^2
+$$ {#eq-squares}
+```
+Then you type `@eq-squares` to get @eq-squares.
+
+This section was defined like this
+```
+## Equations {#sec-equations}
+```
+as such we can now type `@sec-equations` and it will render as @sec-equations.
+
+Quarto even provides a clever 'hover to see a preview function'. (There is a way to disable it if you really wish)
+
+The main difference/drawback to using the Quarto numbering system for equations is in equation blocks (equations on many consecutive lines), where LaTeX offers individually labelling of lines Quarto doesn't. There is a more complex workaround to delegate all labelling of equations to MathJax which can replicate LaTeX behaviour but it's easier to work around it.
 
 ## Handling videos
 
-One way to include videos is to use the Quarto syntax used to insert any figures, where you write
+One way to include videos is to use the Quarto syntax used to insert any figures. You can define a new type of figure. This template has defined a new float object called `vid`, then we can embed videos (using normal Quarto code) but label them and caption them like a figure but use `vid` instead of `fig`.
 
 ```
 ::: {#vid-vid3}
@@ -34,39 +65,6 @@ Here it is:
 This is the caption.
 :::
 
-Referencing is simple, like this @vid-vid3. Such video blocks must contain actual text (the caption is drawn from the final line).
+Referencing is simple, like this @vid-vid3. Such video blocks must contain actual text (the caption is drawn from the final line). You must use the three-letter code defined in Quarto for your object type.
 
-
-## Equations {#sec-equations}
-
-There is good Quarto documentation on how to crossref things [Quarto Cross References](https://quarto.org/docs/authoring/cross-references.html).
-
-The key thing to note is that if you plan to references a standard object like a heading/section the internal label name is restricted to begin with a particular three-letter prefix (except equations which get just `eq`). Plus they recommend against using underscores in labels.
-
-New prefixes can be created, as this template does with to create new figures for videos called `vid`. Theorems, Lemmas etc.. this template recommends the numbered-custom-boxes demonstrated in another chapter. If you follow this recommendation then you must avoid using names like `#thm-fermat` because Quarto will be confused about which method you wish. So in the examples presented I have just started all references with `#r` to avoid overlap, e.g. `#rthm-fermat`.
-
-Here's an equation:
-$$
-\begin{aligned}
-x^2 + y^2 = z^2
-\end{aligned}
-$$ {#eq-squares}
-This equation was created using Quarto labelling syntax, i.e. like this
-```
-$$
-\begin{aligned}
-x^2 + y^2 = z^2
-\end{aligned}
-$$ {#eq-squares}
-```
-Then you type `@eq-squares` to get @eq-squares.
-
-This section was defined like this
-```
-## Equations {#sec-equations}
-```
-as such we can now type `@sec-equations` and it will render as @sec-equations.
-
-Quarto even provides a clever 'hover to see a preview function'. If you don't want it there are ways to disable it (I found it messed with tabbing through the page on one of my machines).
-
-The main drawback to using the Quarto numbering system is for equation blocks (equations on many consecutive lines), where the way LaTeX offers individually labelling of lines Quarto doesn't. There is a more complex workaround to delegate all labelling of equations to MathJax (the javascript equation renderer but I haven't gone with that).
+Personally I prefer to hide the videos from direct view to keep the window clean, so you'll see an alternative method in @sec-niceboxes, where I put them inside folded boxes.

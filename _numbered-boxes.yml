@@ -15,22 +15,27 @@ custom-numbered-blocks:
     examplelike:
       colors: [ 'b2dac4', '004721']
       boxstyle: foldbox.simple
+      collapse: false
     tasklike:
       colors: [948bde, 584eab]
       boxstyle: foldbox.simple
+      collapse: false
     anslike:
       colors: [ d18888, 660000]
       boxstyle: foldbox.simple
+      collapse: true
     deflike:
       colors: [ ffdc36, ffb948]
       boxstyle: foldbox.simple
+      collapse: false
     videolike:
       colors: [c7f3fc, 7ee3f8] #[ d18888, 660000] 
       boxstyle: foldbox.simple
-      collapse: open
+      collapse: true
     thmlike:
       colors: [948bde, 584eab]
       boxstyle: foldbox.simple
+      collapse: false
     supplike:
       colors: [c7f3fc, 7ee3f8]
       boxstyle: foldbox.simple
@@ -38,26 +43,21 @@ custom-numbered-blocks:
     keylike:
       colors: [ff7833, be4d00]
       boxstyle: foldbox.simple
+      collapse: false
   classes:
     Example:
       group: examplelike
-      collapse: false
     Task:
       group: tasklike
-      collapse: false
     Answer:
       group: anslike
-      collapse: true
     Weblink:
       group: videolike
-      collapse: false
       label: "External link"
     Definition:
       group: deflike
-      collapse: false
     Theorem:
       group: thmlike
-      collapse: false
     Lemma:
       colors: [ 'b2dac4', '004721']
       group: thmlike
@@ -71,4 +71,3 @@ custom-numbered-blocks:
     Key:
       group: keylike
       label: "Key Idea"
-      collapse: false
