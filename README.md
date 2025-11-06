@@ -1,4 +1,4 @@
-# UofG Stats Book Quarto Template
+# UofGStats Book Quarto Template
 
 This document explains how to install, set up, and customize the UofGStats book Quarto template.  
 
