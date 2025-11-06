@@ -7,8 +7,8 @@ This document explains how to install, set up, and customize the UofGStats book 
 ## Table of Contents
 
 - [Installation](#installation)  
-  - [Option 1: Clone the repository](#option-1-clone-the-repository)  
-  - [Option 2: Use the Quarto template](#option-2-use-the-quarto-template)  
+  - [Option 1: Clone the repository using the Github Template](#option-1-clone-the-repository)  
+  - [Option 2: Use the Quarto template function (only for a public repo)](#option-2-use-the-quarto-template)  
 - [Setting up your chapters](#setting-up-your-chapters)  
 - [Adding resources](#adding-resources)
 - [Customizing colours and boxes](#customizing-colours-and-boxes)  
@@ -20,14 +20,31 @@ This document explains how to install, set up, and customize the UofGStats book 
 
 ## Installation
 
-You can set up this template in one of two ways: by cloning the repository directly, or by using Quarto’s built-in template system.
+You can set up this template in one of two ways: by cloning the template repository directly, or by using Quarto’s built-in template system (the latter only works if we make the repo public).
 
-### Option 1: Clone the repository
+The recommended route to use this template is to use Github's `Use this template` functionality. Then you get your own version of this repository for your own notes, not linked to the template.
+
+### Option 1: Use the GitHub Template (recommended)
+
+1. Go to the [template repository on GitHub](https://github.com/UofGStats/booktemplate).  
+2. Find and click the `Use this template` button, then “Create a new repository”.  
+3. Choose a name for your new project and click **Create repository**.
+
+This will generate a new repository with the same structure, **without copying the Git history** from the template.
+
+Once created, clone your new repository locally:
+
+```bash
+git clone https://github.com/<your-username>/<your-new-repo>.git
+cd <your-new-repo>
+```
+
+### Option 1b: Clone the repository (not recommended unless you want to propose changes to the template)
 
 If you want a full copy of the project structure, you can clone the repository:
 
 ```bash
-git clone https://github.com/UofGStats/booktemplate.git
+git clone https://github.com/UofGStats/weektemplate.git
 ```
 
 After cloning, remove the existing Git history and links to the original repository:
@@ -39,7 +56,7 @@ git init
 
 This ensures your new project starts clean, without any connection to the source repository.
 
-### Option 2: Use the Quarto template
+### Option 2: Use the Quarto template (This only works if the repository is Public)
 
 To create a new project from the template using Quarto:
 
