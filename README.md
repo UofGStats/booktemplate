@@ -7,15 +7,15 @@ This document explains how to install, set up, and customize the UofGStats book 
 ## Table of Contents
 
 - [Installation](#installation)  
-  - [Option 1: Clone the repository using the Github Template](#option-1-clone-the-repository)  
-  - [Option 2: Use the Quarto template function (only for a public repo)](#option-2-use-the-quarto-template)  
+  - [Option 1: Clone the repository using the Github Template](#option-1-use-the-github-template-recommended)  
+  - [Option 2: Use the Quarto template function (only for a public repo)](#option-2-use-the-quarto-template-this-only-works-if-the-repository-is-public)  
 - [Setting up your chapters](#setting-up-your-chapters)  
 - [Adding resources](#adding-resources)
 - [Customizing colours and boxes](#customizing-colours-and-boxes)  
   - [1. Default colours and box types](#1-default-colours-and-box-types)  
   - [2. Dark-mode colours](#2-dark-mode-colours)  
 - [Template colours and styles for HTML and PDF](#template-colours-and-styles-for-html-and-pdf)  
-
+- [Python](#python)
 ---
 
 ## Installation
@@ -211,3 +211,24 @@ This approach ensures your LaTeX macros work consistently across HTML and PDF ou
 
 Note that only macros compatible with MathJax can be rendered in HTML output.
 
+
+## Python
+
+This template contains both R and Python code. So if you don't have Python installed on your system already then you will need to do that first. Once you do, install the `reticulate` package in R, and finally look for any of the code blocks that look like this:
+
+`````markdown
+```{r}
+#| label: python-setup
+#| echo: fenced
+library(reticulate)
+#These next two lines need to run ONCE on your machine
+#reticulate::virtualenv_create("r-quarto")
+#reticulate::py_install(c("pandas","seaborn","matplotlib","numpy"), envname = "r-quarto")
+reticulate::use_virtualenv("r-quarto", required = TRUE)
+```
+`````
+Note the instructions in the block say that you will need to **once** run the two commented lines of code to setup a Python environment for your code to use. So **uncomment them**, **run them**, then **comment them again** and all should work.
+
+Naturally this will need running on any new machine you work on. If using RStudio and `reticulate` struggles to find Python, there's a menu **Tools** -- **Global Options** -- **Python** menu to assist.
+
+---
