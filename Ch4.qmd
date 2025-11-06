@@ -83,9 +83,9 @@ All of these blocks are *foldable*, meaning they can be opened and closed. The `
 | Lemma     | `thmlike`  | <span class="colorbox" style="background-color:#b2dac4;"></span>`#b2dac4` | <span class="colorbox" style="background-color:#004721;"></span>`#004721` | Open / Closeable |
 | Corollary | `thmlike`  | <span class="colorbox" style="background-color:#7fbad7;"></span>`#7fbad7` | <span class="colorbox" style="background-color:#005398;"></span>`#005398` | Open / Closeable |
 | Definition| `deflike`   | <span class="colorbox" style="background-color:#ffdc36;"></span>`#ffdc36` | <span class="colorbox" style="background-color:#ffb948;"></span>`#ffb948` | Open / Closeable |
-| Video     | `videolike` | <span class="colorbox" style="background-color:#d18888;"></span>`#d18888` | <span class="colorbox" style="background-color:#660000;"></span>`#660000` | Open / Closeable |
+| Video     | `videolike` | <span class="colorbox" style="background-color:#d18888;"></span>`#d18888` | <span class="colorbox" style="background-color:#660000;"></span>`#660000` | Closed / Openable |
 
-: This is the table's caption {#tbl-boxcols tbl-colwidths="[15,20,25,20,20]"}
+: This is the table's caption {#tbl-boxcols tbl-colwidths="[15,20,20,20,25]"}
 
 These boxes also have dark-mode versions, see below. Notice this table had a caption, and it can be referenced with normal Quarto syntax: @tbl-boxcols. They can also have styling added.
 
