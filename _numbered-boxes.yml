@@ -44,6 +44,9 @@ custom-numbered-blocks:
       colors: [ff7833, be4d00]
       boxstyle: foldbox.simple
       collapse: false
+    outcomeslike:
+      colors: ['00b5d1', '005398']
+      boxstyle: foldbox.simple
   classes:
     Example:
       group: examplelike
@@ -71,3 +74,7 @@ custom-numbered-blocks:
     Key:
       group: keylike
       label: "Key Idea"
+    Outcomes:
+      group: outcomeslike
+      label: "Learning Outcomes"
+      collapse: false

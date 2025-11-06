@@ -35,6 +35,8 @@ book:
         href: Ch5.qmd
       - text: Chapter 6
         href: Ch6.qmd
+      - text: Chapter X
+        href: ChX.qmd
   sidebar:
     style: "docked"
     search: true
