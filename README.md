@@ -228,7 +228,7 @@ Or, if you just want to disable python globally and test out the template then [
 
 A file called `nopython.Rprofile` comes with the template. You just need to rename this file to `.Rprofile` (or add its contents to your existing `.Rprofile` file if you're using one for other purposes).
 
-Once you have renamed `nopython.Rprofile --> `.Rprofile` when you render all python blocks will be set to `eval: false` and all r blocks with the label `reticulate-setup` will also be set to `eval: false`.
+Once you have renamed `nopython.Rprofile` to `.Rprofile` when you render all python blocks will be set to `eval: false` and all r blocks with the label `reticulate-setup` will also be set to `eval: false`.
 
 ### Using Python
 
