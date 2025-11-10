@@ -2,6 +2,8 @@
 
 This document explains how to install, set up, and customize the UofGStats book Quarto template.  
 
+**Warning**: This template contains python code as well as R code. If you don't have python installed and don't wish to use it, make sure to check out the advice on [how to disable python](#disabling-python).
+
 ---
 
 ## Table of Contents
@@ -16,6 +18,10 @@ This document explains how to install, set up, and customize the UofGStats book 
   - [2. Dark-mode colours](#2-dark-mode-colours)  
 - [Template colours and styles for HTML and PDF](#template-colours-and-styles-for-html-and-pdf)  
 - [Python](#python)
+  - [Disabling Python](#disabling-python)
+  - [Using Python](#using-python)
+
+
 ---
 
 ## Installation
@@ -60,7 +66,7 @@ This ensures your new project starts clean, without any connection to the source
 
 To create a new project from the template using Quarto:
 
-1. Open your preferred editor — **RStudio**, **Positron**, or **VS Code**.  
+1. Open your preferred editor - **RStudio**, **Positron**, or **VS Code**.  
 2. Decide where you want to store your book materials.  
 3. Open a **terminal** in the *parent folder* of that location.  
 
@@ -214,11 +220,23 @@ Note that only macros compatible with MathJax can be rendered in HTML output.
 
 ## Python
 
-This template contains both R and Python code. So if you don't have Python installed on your system already then you will need to do that first. Once you do, install the `reticulate` package in R, and finally look for any of the code blocks that look like this:
+This template contains both R and Python code. So you have two options, follow the instructions below to ensure R can see Python (via the `reticulate` package).
+
+Or, if you just want to disable python globally and test out the template then [Disabling Python](#disabling-python) is for you!
+
+### Disabling Python
+
+A file called `nopython.Rprofile` comes with the template. You just need to rename this file to `.Rprofile` (or add its contents to your existing `.Rprofile` file if you're using one for other purposes).
+
+Once you have renamed `nopython.Rprofile --> `.Rprofile` when you render all python blocks will be set to `eval: false` and all r blocks with the label `reticulate-setup` will also be set to `eval: false`.
+
+### Using Python
+
+ So if you don't have Python installed on your system already then you will need to do that first. Once you do, install the `reticulate` package in R, and finally look for any of the code blocks that look like this:
 
 `````markdown
 ```{r}
-#| label: python-setup
+#| label: reticulate-setup
 #| echo: fenced
 library(reticulate)
 #These next two lines need to run ONCE on your machine

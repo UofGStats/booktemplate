@@ -44,6 +44,7 @@ $key-title-bg-color: #8b3700;
 
 $outcomes-border-color: #005398;
 $outcomes-title-bg-color: #00b5d1;
+$outcomes-title-color: #222222;
 
 .Example {
   @include numbered-box-dark-mode($example-border-color, $example-title-bg-color, $body-color);
@@ -90,6 +91,6 @@ $outcomes-title-bg-color: #00b5d1;
 }
 
 .Outcomes {
-  @include numbered-box-dark-mode($outcomes-border-color, $outcomes-title-bg-color, $body-color);
+  @include numbered-box-dark-mode($outcomes-border-color, $outcomes-title-bg-color, $outcomes-title-color);
 }
 

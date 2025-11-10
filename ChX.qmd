@@ -32,9 +32,9 @@ library(ggplot2)
 ```
 
 ```{r}
-#| label: python-setup-real
+#| label: reticulate-setup
 #| echo: false
-#| 
+
 library(reticulate)
 
 #These next two lines need to run ONCE on your machine

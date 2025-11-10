@@ -99,13 +99,13 @@ library(gridExtra)
 
 <!-- Setup python via conda and a predefined quarto environment -->
 ```{r}
-#| label: python-setup
+#| label: reticulate-setup
 #| code-fold: false
 #| echo: false
 library(reticulate)
 #These next two lines need to run ONCE on your machine
 #reticulate::virtualenv_create("r-quarto")
-#reticulate::py_install(c("pandas","seaborn","matplotlib","numpy"), envname = "r-quarto")
+#reticulate::py_install(c("pandas","seaborn","matplotlib","numpy","statsmodels"), envname = "r-quarto")
 reticulate::use_virtualenv("r-quarto", required = TRUE)
 ```
 

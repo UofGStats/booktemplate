@@ -38,7 +38,7 @@ Some more placeholder text here. Even in the book template every `.qmd` that wis
 
 <!-- Setup python via conda and a predefined quarto environment -->
 ```{r}
-#| label: python-setup
+#| label: reticulate-setup
 #| echo: fenced
 library(reticulate)
 #These next two lines need to run ONCE on your machine
@@ -146,7 +146,7 @@ This figure caption is written in a dark font color. The Quarto default is often
 
 :::{.panel-tabset}
 
-## Python
+### Python
 
 ```{python simple1a}
 3+34

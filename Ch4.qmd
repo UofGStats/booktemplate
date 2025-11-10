@@ -6,9 +6,9 @@ acc-tools:
   global-toggle: false
 ---
 
-```{r python-setup-new-reticulate}
+```{r}
+#| label: reticulate-setup
 #| include: false
-#| eval: true
 library(reticulate)
 #These next two lines need to run ONCE on your machine
 #reticulate::virtualenv_create("r-quarto")
@@ -225,9 +225,9 @@ One way is to let Quarto manage a Python environment for you via `quarto install
 
 Look at the top of each file and you'll find a chunk like this
 
-```{{r python-setup-new-reticulate}}
+```{{r}}
+#| label:  reticulate-setup
 #| include: false
-#| eval: true
 library(reticulate)
 
 # These next two lines need to run ONCE on your machine to create the environment
