@@ -71,7 +71,7 @@ format:
     code-overflow: wrap
     toc: true # Table of contents true/false
     toc-location: right # Location of table of contents
-    respect-user-color-scheme: true # Permit auto-dark mode if desired set by user
+    #respect-user-color-scheme: true # Permit auto-dark mode if desired set by user
     theme:
       light: [themes/load-light.scss, cosmo]
       dark: [superhero, themes/load-dark.scss] # Remove this row to totally remove
