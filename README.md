@@ -45,6 +45,8 @@ git clone https://github.com/<your-username>/<your-new-repo>.git
 cd <your-new-repo>
 ```
 
+Of course if you use GitHub Desktop, for example, you can clone your newly created repo using that software instead. This final step is just to get a copy of your repo you just created onto you machine so you can start working on it.
+
 ### Option 1b: Clone the repository (not recommended unless you want to propose changes to the template)
 
 If you want a full copy of the project structure, you can clone the repository:
