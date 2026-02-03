@@ -11,6 +11,11 @@ metadata-files:
 
 knitr: true
 
+# Enables new MathJax 4
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
+
 book:
   # No title -- included via _sidebar_header.html
   #author: "Dr David Hodge"
