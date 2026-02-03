@@ -72,6 +72,10 @@ format:
     toc: true # Table of contents true/false
     toc-location: right # Location of table of contents
     #respect-user-color-scheme: true # Permit auto-dark mode if desired set by user
+    include-in-header: #code to reduce youtube overheads
+      - text: |
+          <script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.0/src/lite-yt-embed.js"></script>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.0/src/lite-yt-embed.css" />
     theme:
       light: [themes/load-light.scss, cosmo]
       dark: [superhero, themes/load-dark.scss] # Remove this row to totally remove
