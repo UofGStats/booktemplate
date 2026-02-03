@@ -10,6 +10,8 @@
 #| eval: true
 #| echo: false
 #| cache: false
+#| warning: false
+#| message: false
 
 knitr::opts_chunk$set(comment=NA, warning = FALSE)
 library(dplyr)
@@ -36,7 +38,7 @@ update_geom_defaults("point", list(size = 2, color = "#005398"))
 ```{r}
 #| label: reticulate-setup
 #| echo: false
-#| 
+
 library(reticulate)
 #reticulate::use_python("C:/Python/Python314/python.exe", required = TRUE)
 #Sys.getenv("WORKON_HOME")
