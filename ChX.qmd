@@ -34,7 +34,7 @@ update_geom_defaults("point", list(size = 2, color = "#005398"))
 ```
 
 ```{r}
-#| label: python-setup-real
+#| label: reticulate-setup
 #| echo: false
 #| 
 library(reticulate)
