@@ -1,8 +1,11 @@
 ---
-#acc-tools:
-#  global-toggle: false
-#  acc-styles: false
-#  code-blocks: false
+filters:
+    - acc-tools
+
+acc-tools:
+  global-toggle: true
+  acc-styles: true
+  code-blocks: true
 ---
 
 ```{r}
@@ -1654,6 +1657,7 @@ We can explore the relationships between the variables by looking at plots:
 #| fig-alt: "An all-pairs plot for the Possum data. Showing all 36 paired plots of data comparisons. Too much detail for alt-text description."
 #| fig-cap: "An all-pairs plot for the Possum data"
 #| code-fold: show
+#| cache: true
 
 library(GGally)
 p4<- ggpairs(possum, columns = c(3,4,5,6,7,8), columnLabels = c("Sex", " Age", "Head length", "Skull width", "Total length", "Tail length"), aes(colour = pop, alpha = 0.4), upper = list(continuous = wrap("cor", size = 2)))

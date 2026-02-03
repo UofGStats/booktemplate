@@ -1,8 +1,3 @@
----
-filters:
-  - acc-tools
----
-
 # Links chapter {#sec-links}
 
 This chapter can even link back to other whole chapters @sec-binary-response. Or equations in other chapters @eq-AROC. This is only true for the book template.
