@@ -1,0 +1,77 @@
+/*-- scss:defaults --*/
+
+/* =========================================================
+   University of Glasgow colour palette – Spring 2026
+   Drop‑in replacement for legacy _colours.scss file
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   New primary colours
+   --------------------------------------------------------- */
+
+$university-blue: #011451;
+$light-grey:      #f7f7f7;
+$transparent:     transparent;
+
+/* ---------------------------------------------------------
+   New secondary – dark
+   --------------------------------------------------------- */
+
+$dark-red:     #7d2239;
+$dark-blue:    #005398;
+$dark-green:   #405d18;
+$dark-pink:    #a60367;
+$dark-purple:  #4c2683;
+$dark-grey:    #585858;
+
+/* ---------------------------------------------------------
+   New secondary – light
+   --------------------------------------------------------- */
+
+$light-yellow: #f2d25c;
+$light-blue:   #4dbbc6;
+$light-green:  #81c071;
+$light-pink:   #e98baf;
+$light-purple: #a5a1ce;
+
+/* =========================================================
+   Backwards‑compatibility
+   previous names (pre Spring 2026) but mapped to new colours
+   ========================================================= */
+
+/* Core palette (legacy) */
+
+$burgundy:        $dark-red;
+$cobalt:          $dark-blue;
+$lavender:        $dark-purple;
+$leaf:            $dark-green;
+$moss:            $dark-green;
+
+$pillarbox:       $dark-red;
+$rust:            $light-yellow;
+$sandstone:       $light-grey;
+$sky-blue:        $dark-blue;
+$slate:           $dark-grey;
+$thistle:         $dark-pink;
+
+/* Secondary colours (legacy) */
+
+$turquoise:       $light-blue;
+$rose:            $light-pink;
+$pumpkin:         $light-yellow;
+$sunshine:        $light-yellow;
+$mocha:           $dark-grey;
+
+/* =========================================================
+   Template colour styles
+   ========================================================= */
+
+// $navbar-bg: $university-blue;
+// $navbar-fg: #ffffff;
+// $navbar-hl: #ffffff;
+
+$callout-color-note:       $university-blue;
+$callout-color-tip:        $leaf;
+$callout-color-caution:    $rust;
+$callout-color-warning:    $pillarbox;
+$callout-color-important:  $cobalt;
