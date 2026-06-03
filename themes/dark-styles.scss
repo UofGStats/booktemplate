@@ -114,3 +114,10 @@ code:not(pre > code) {
   color: $body-color !important;
 }
 
+// Give SVG figures a light background in dark mode
+.quarto-figure img[src$=".svg"] {
+  background-color: $primary;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
