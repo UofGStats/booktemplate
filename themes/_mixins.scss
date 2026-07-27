@@ -1,5 +1,5 @@
 @mixin numbered-box-dark-mode($border-color, $title-bg-color, $title-color) {
-  details.fbx-default {
+  details.fbx-default, details.fobx-default {
     > summary,
     > div {
       border-color: $border-color; // Set border color
