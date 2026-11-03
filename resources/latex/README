@@ -1,19 +1,35 @@
 I haven't worked out how to have comments in the included style file mymacros.sty
-So the version with commentary is here:
+So the version with commentary is here.
+
+1) File `mymacros.sty` defines LaTeX macros to be read by MathJax in the HTML output.
+2) File `include-in-header.tex` (which lives in the main directory) defines LaTeX macros to be read by LaTeX in the PDF output.
+3) You need to add new macros to both (a quirk of Quarto as of 2026, still)
 
 % This is used for pdf compilation from qmd.
 % This file should be updated in parallel with mymacros.sty which is used for html compilation.
 % This is how the two files are included in the _quarto.yaml header of the qmd file
 %format:
 %  html:
-%    defaults: [mymacros.style]
+%    defaults: [mymacros.sty]
 %  pdf:
 %   include-in-header: ["include-in-header.tex"]
+
+% Here are the default commands I've included with the template:
 
 \newcommand*{\diff}[3][]{\frac{\!\textrm{d}^{#1} #2}{\textrm{d}#3^{#1}}}
 
 % Declaring math operators. Could also use \newcommand{\name}{\operatorname{name}}
 \DeclareMathOperator{\cosec}{cosec}
-\DeclareMathOperator{\powop}{pow} %\newcommand{\pow}{\operatorname{pow}}
+\DeclareMathOperator{\powop}{pow}
+\DeclareMathOperator{\Bernoulli}{Bernoulli}
+\DeclareMathOperator{\Binomial}{Binomial}
+\DeclareMathOperator{\Multinomial}{Multinomial}
+\DeclareMathOperator{\Multinom}{Multinom}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Poisson}{Poisson}
 
 $\definecolor{frog}{rgb}{1,0,0}$
+$\newcommand{\dx}{\,\text{d}x}$
+$\newcommand{\du}{\,\text{d}u}$
+$\newcommand{\dy}{\,\text{d}y}$
+$\newcommand{\dt}{\,\text{d}t}$
